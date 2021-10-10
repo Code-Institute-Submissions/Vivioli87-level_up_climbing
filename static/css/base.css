@@ -10,6 +10,17 @@ body {
     font-family: 'Lato' ;
 }
 
+/* overlay on pages I do not want the main image*/
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -17,6 +28,12 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
+}
+
+/*header/navbar styling*/
+
+header {
+   border-bottom: 5px solid #10bc6c; 
 }
 
 .list-inline-item:not(:last-child) {
