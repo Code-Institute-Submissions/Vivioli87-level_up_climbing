@@ -19,6 +19,11 @@ body {
     width: 1.5rem;
 }
 
+.list-inline-item:not(:last-child) {
+    margin-right: 2rem;
+    padding: 0 1rem;
+}
+
 .logo-font {
     color: #10bc6c;
     text-transform: uppercase;
@@ -28,7 +33,34 @@ body {
 .sign-up-button {
     background-color: #10bc6c;
     color: #fff;
+    text-shadow: 2px 2px 4px #0c3d26
 }
+
+.container-over-image h1 {
+    text-shadow: 4px 4px 8px #0c3d26;
+}
+
+.header-container {
+    padding-top: 164px;
+}
+
+/* form/all auth pages styling when over the main body image*/
+.form-over-image {
+    background: #ffffff99;
+    margin: 0 auto;
+    width: max-content;
+    padding: 1rem 4rem 2rem;
+}
+
+.form-over-image h1 {
+    color: #10bc6c;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+
 
 /* -------------------------------- Media Queries */
 
@@ -37,19 +69,15 @@ body {
     .container {
       max-width: 80%;
     }
-  }
+}
   
-  /* fixed top navbar only on medium and up */
-  @media (min-width: 992px) {
-      .fixed-top-desktop-only {
-          position: fixed;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 1030;
-      }
-  
-      .header-container {
-          padding-top: 164px;
-      }
-  }
+
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
+}

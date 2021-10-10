@@ -1,0 +1,43 @@
+<div class="collapse navbar-collapse" id="mobile-nav">
+    <ul class="navbar-nav w-auto mx-auto">
+        <li class="nav-item">
+            <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                <h2 class="text-black my-0"><strong><span class="logo-font">Level Up!</span></strong> Climbing</h2>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="logo-font nav-link" href="#">Who are we?</a>
+        </li>
+        <li class="nav-item">
+            <a class="logo-font nav-link" href="#">Articles</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="logo-font nav-link" href="#" id="class-options-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Classes
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="class-options-link">
+                <a href="" class="dropdown-item">Group Classes</a>
+                <a href="" class="dropdown-item">1:1 Coaching</a> 
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="logo-font nav-link" href="#" id="user-options-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="user-options-link">
+                {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <a href="" class="dropdown-item">Class Management</a>
+                        <a href="" class="dropdown-item">Article Management</a>
+                    {% endif %}
+                    <a href="" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                {% else %}
+                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                {% endif %}
+            </div>
+        </li>
+
+    </ul>
+</div>
