@@ -1,7 +1,28 @@
 from django.db import models
 
+
 class Level(models.Model):
     name = models.CharField(max_length=254)
+
+    def __str__(self):
+        return self.name
+
+
+class Lesson(models.Model):
+    name = models.CharField(max_length=254)
+    description = models.TextField()
+    level = models.ForeignKey('Level', null=True, blank=True,
+                              on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
+
+
+# Linking table between lesson and course type
+class CourseLesson(models.Model):
+    name = models.CharField(max_length=254)
+    lesson = models.ForeignKey('Lesson', on_delete=models.CASCADE)
+    course_type = models.ForeignKey('CourseType', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -17,14 +38,15 @@ class CourseType(models.Model):
 
     def __str__(self):
         return self.name
-                                  
+
 
 class Course(models.Model):
+    name = models.CharField(max_length=254, null=True, blank=True)
     level = models.ForeignKey('Level', null=True, blank=True,
                               on_delete=models.SET_NULL)
-    name = models.ForeignKey('CourseType', null=True, blank=True,
-                             on_delete=models.SET_NULL)
-    start_date = models.DateTimeField(auto_now_add=True)
+    course_type = models.ForeignKey('CourseType', null=True, blank=True,
+                                    on_delete=models.SET_NULL)
+    start_date = models.DateTimeField(auto_now_add=False)
 
     def __str__(self):
         return self.name

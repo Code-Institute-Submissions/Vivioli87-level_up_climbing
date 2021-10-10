@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font mb-4">Courses</h2>
+            {% for course in courses %}
+                <div class="card">
+                    <div class="card-header">
+                        {{ course.level }} - {{ course.name }}
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text">{{ course.course_type.description }}</p>
+                    <p class="card-text">Weekly lessons on:</p>
+                        <ul>
+                            {% for lesson in course_lessons %}
+                                {% if course.course_type == lesson.course_type %}
+                                    <li> {{ lesson.name}} </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    <p class="card-text"><span>First lesson start date & time:</span> {{ course.start_date }} then every week on same day and time.</p>
+                    <a href="#" class="btn btn-primary">More Detail/Book</a>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}
