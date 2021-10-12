@@ -53,7 +53,7 @@ header {
     text-shadow: 2px 2px 4px #0c3d26;
 }
 
-.container-over-image h1 {
+.container-over-image h1, .text-over-image {
     text-shadow: 4px 4px 8px #0c3d26;
 }
 
@@ -88,6 +88,20 @@ header {
 .course-card > .card-header {
     background-color: #d5f2e4;
     text-shadow: 1px 1px 0.5px #0c3d26;
+}
+
+.popover {
+    margin-left: 2rem;
+}
+
+.popover-header {
+    background-color: #d5f2e4;
+    text-shadow: 1px 1px 0.5px #0c3d26;
+    color: #10bc6c;
+}
+
+.course-detail-links {
+    color: #10bc6c;
 }
 
 

@@ -3,24 +3,47 @@
 
 {% block content %}
 
-<div class="overlay"></div>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <h2 class="logo-font text-center">{{ course.name }}</h2>
-            <h4>Level - {{ course.level }}</h4>
-            <p>{{ course.course_type.description }}</p>
-            <p>Weekly lessons on:</p>
-            <ul class="list-unstyled">
-                {% for lesson in course_lessons %}
-                    {% if course.course_type == lesson.course_type %}
-                        <li> {{ lesson.name}} </li>
-                    {% endif %}
-                {% endfor %}
-            <p>Price: £{{ course.course_type.price }}</p>
-            </ul>
+        <div class="col text-center">
+            <div class="card course-card">
+                <div class="card-header logo-font">{{ course.name }}</div>
+                <div class="card-body">
+                    <p class="card-text">Level - {{ course.level }}</p>
+                    <p class="card-text">{{ course.course_type.description }}</p>
+                    <p class="card-text">Lessons include:</p>
+                        <ul class="list-unstyled">
+                            {% for lesson in course_lessons %}
+                                {% if course.course_type == lesson.course_type %}
+                                    <li>
+                                        <a class="course-detail-links" href="#" tabindex="0" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" title="{{ lesson.name}}" data-bs-content="{{ lesson.lesson.description }}">
+                                            {{ lesson.name}}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
+                    <p class="card-text">The course runs for 4 weeks. Classes will be on the same week day and time as the first lesson.</p>
+                    <p class="card-text">Price: £{{ course.course_type.price }}</p>
+                    <a href="#" class="btn btn-success">Book Course</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+<script type="text/javascript">
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'), { container: 'body' })
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+    })
+    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
+        trigger: 'focus'
+    })
+</script>
+
 {% endblock %}
