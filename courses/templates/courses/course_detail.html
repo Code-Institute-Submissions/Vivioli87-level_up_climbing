@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2 class="logo-font text-center">{{ course.name }}</h2>
+            <h4>Level - {{ course.level }}</h4>
+            <p>{{ course.course_type.description }}</p>
+            <p>Weekly lessons on:</p>
+            <ul class="list-unstyled">
+                {% for lesson in course_lessons %}
+                    {% if course.course_type == lesson.course_type %}
+                        <li> {{ lesson.name}} </li>
+                    {% endif %}
+                {% endfor %}
+            <p>Price: £{{ course.course_type.price }}</p>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

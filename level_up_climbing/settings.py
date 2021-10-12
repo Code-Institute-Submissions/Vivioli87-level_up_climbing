@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+# To change format of the date on website
+from django.conf.locale.en import formats as en_formats
+en_formats.DATETIME_FORMAT = "d/m/y, h:i a"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

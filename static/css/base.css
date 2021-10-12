@@ -50,7 +50,7 @@ header {
 .sign-up-button {
     background-color: #10bc6c;
     color: #fff;
-    text-shadow: 2px 2px 4px #0c3d26
+    text-shadow: 2px 2px 4px #0c3d26;
 }
 
 .container-over-image h1 {
@@ -77,9 +77,22 @@ header {
 }
 
 
+/* Course pages */
+
+.course-card {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.course-card > .card-header {
+    background-color: #d5f2e4;
+    text-shadow: 1px 1px 0.5px #0c3d26;
+}
 
 
-/* -------------------------------- Media Queries */
+
+/* Media Queries */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
