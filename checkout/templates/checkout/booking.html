@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font text-over-image mb-4">{{ course.name }} - Booking form</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card course-card">
+                <div class="card-header logo-font text-center">Please fill out the form below to complete your booking for 
+                    <br> {{ course.name }} 
+                    <br> Start date: {{ course.start_date }}
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'booking' course.id %}" method="POST" id="booking-form">
+                        {% csrf_token %}
+                            <fieldset class="rounded px-3 mb-5">
+                                <legend class="fieldset-label small px-2 w-auto">Details</legend>
+                                {{ booking_form.full_name | as_crispy_field }}
+                                {{ booking_form.email | as_crispy_field }}
+                                {{ booking_form.phone_number | as_crispy_field }}
+                                <div class="form-check form-check-inline float-right mr-0">
+                                    {% if user.is_authenticated %}
+                                        <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
+                                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                                    {% else %}
+                                        <label class="form-check-label" for="id-save-info">
+                                            <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
+                                            <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                                        </label>
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <fieldset class="px-3">
+                                <legend class="fieldset-label small px-2 w-auto"></legend>
+                                <!--Stripe card element goes here-->
+                                <div class="mb-3" id="card-element"></div>
+
+                                <!--To display form errors on card payments-->
+                                <div class="mb-3 text-danger" id="card-erros" role="alert"></div>
+                            </fieldset>
+                            <div class="submit-button text-right mt-5 mb-2">
+                                <a href="#" class="btn rounded-0 back-button">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span>Back to course detail</span>
+                                </a>
+                                <button id="submit-button" class="btn rounded-0">
+                                    <span class="font-weight-bold">Complete Booking</span>
+                                    <span class="icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </button>
+                                <p class="small text-danger my-0">
+                                    <span class="icon">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                    <span>Your card will be charged <strong>£{{ course.course_type.price }}</strong></span>
+                                </p>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script src="{% static 'js/backbutton.js' %}"></script>
+{% endblock %}

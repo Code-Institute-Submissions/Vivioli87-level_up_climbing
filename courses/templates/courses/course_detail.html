@@ -26,8 +26,13 @@
                     <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
                     <p class="card-text">The course runs for 4 weeks. Classes will be on the same week day and time as the first lesson.</p>
                     <p class="card-text">Price: £{{ course.course_type.price }}</p>
-                    <a href="#" class="btn btn-success">Book Course</a>
-                    </div>
+                    <a href="#" class="btn rounded-0 back-button">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span>Back to courses</span>
+                    </a>
+                    <a href="{% url 'booking' course.id %}" class="btn btn-success">Book Course</a>
                 </div>
             </div>
         </div>
@@ -36,14 +41,6 @@
 {% endblock %}
 
 {% block postloadjs %}
-<script type="text/javascript">
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'), { container: 'body' })
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    return new bootstrap.Popover(popoverTriggerEl)
-    })
-    var popover = new bootstrap.Popover(document.querySelector('.popover-dismiss'), {
-        trigger: 'focus'
-    })
-</script>
-
+    <script src="{% static 'js/popover.js' %}"></script>
+    <script src="{% static 'js/backbutton.js' %}"></script>
 {% endblock %}
