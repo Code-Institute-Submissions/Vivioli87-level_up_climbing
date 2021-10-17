@@ -35,11 +35,3 @@ class Booking(models.Model):
 
     def __str__(self):
         return self.booking_reference
-
-
-# class BookingDetails(models.Model):
-#     booking = models.ForeignKey(Booking, null=False, blank=False, on_delete=models.CASCADE, related_name='bookingdetails')
-#     course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE)
-
-#     def __str__(self):
-#         return f'Course {self.course.name} booked on booking reference {self.booking.booking_reference}'

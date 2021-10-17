@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.conf import settings
 
 from .forms import BookingForm
-from .models import Booking, BookingDetails
+from .models import Booking
 from courses.models import Course
 
 import stripe
