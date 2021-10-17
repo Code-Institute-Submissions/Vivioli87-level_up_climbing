@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font text-over-image mb-4">Thank you</h2>
+            <hr>
+            <p>Your booking details are below. A confirmation email will be sent to <strong>{{ booking_submission.email }}</strong>.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

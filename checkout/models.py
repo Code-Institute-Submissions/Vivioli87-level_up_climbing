@@ -4,6 +4,7 @@ from django.db import models
 
 from courses.models import Course
 
+
 class Booking(models.Model):
 
     booking_reference = models.CharField(max_length=32, null=False,
@@ -13,8 +14,8 @@ class Booking(models.Model):
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
     booking_total = models.DecimalField(max_digits=10, decimal_places=2,
-                                        null=False, default=0)
-    booked_course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE)
+                                        null=False, blank=False)
+    booked_course = models.CharField(max_length=60, null=False, blank=False)
 
     def _create_booking_reference(self):
         """
@@ -24,12 +25,21 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the booking refernce
+        Override the original save method to set the booking refernce, course id and amount
         if it hasn't been set already.
         """
-        if not self.order_number:
-            self.order_number = self._create_booking_reference()
+        if not self.booking_reference:
+            self.booking_reference = self._create_booking_reference()
+        
         super().save(*args, **kwargs)
-    
+
     def __str__(self):
         return self.booking_reference
+
+
+# class BookingDetails(models.Model):
+#     booking = models.ForeignKey(Booking, null=False, blank=False, on_delete=models.CASCADE, related_name='bookingdetails')
+#     course = models.ForeignKey(Course, null=False, blank=False, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return f'Course {self.course.name} booked on booking reference {self.booking.booking_reference}'
