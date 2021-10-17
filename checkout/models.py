@@ -25,7 +25,7 @@ class Booking(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the booking refernce, course id and amount
+        Override the original save method to set the booking refernce
         if it hasn't been set already.
         """
         if not self.booking_reference:

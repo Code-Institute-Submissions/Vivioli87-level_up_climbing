@@ -30,28 +30,25 @@ def booking(request, course_id):
             'booked_course': course_name,
         }
 
-        print(form_data)
-
         booking_form = BookingForm(form_data)
+
         if booking_form.is_valid():
             booking_submission = booking_form.save()
+            
             return redirect(reverse('booking_success',
                                     args=[booking_submission.booking_reference]))
         # else:
         #     messages.error(request, 'There was an error on the booking form')
 
     else:
-        # course = get_object_or_404(Course, pk=course_id)
-        # course_price = course.course_type.price
-
         stripe_total = round(course_price * 100)
-        booking_form = BookingForm()
         stripe.api_key = stripe_secret_key
 
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+        booking_form = BookingForm()
 
     template = 'checkout/booking.html'
     context = {
@@ -69,8 +66,10 @@ def booking_success(request, booking_reference):
 
     # save_info = request.session.get('save_info')
 
-    booking_submission = get_object_or_404(Booking, booking_reference=booking_reference)
-    messages.success(request, f'Booking successfully processes! {booking_reference}')
+    booking_submission = get_object_or_404(Booking, 
+                                           booking_reference=booking_reference)
+    messages.success(request,
+                     f'Booking successfully processes! {booking_reference}')
 
     template = 'checkout/booking_success.html'
     context = {

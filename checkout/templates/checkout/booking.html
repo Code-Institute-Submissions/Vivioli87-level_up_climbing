@@ -21,7 +21,7 @@
                     <br> Start date: {{ course.start_date }}
                 </div>
                 <div class="card-body">
-                    <form action="{% url 'booking' course.id %}" method="POST" id="booking-form">
+                    <form action="{% url 'booking' course.id %}" method="POST" id="payment-form">
                         {% csrf_token %}
                             <fieldset class="rounded px-3 mb-5">
                                 <legend class="fieldset-label small px-2 w-auto">Details</legend>

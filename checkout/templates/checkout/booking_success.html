@@ -10,14 +10,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center">
-            <h2 class="logo-font text-over-image mb-4">Thank you</h2>
-            <hr>
-            <p>Your booking details are below. A confirmation email will be sent to <strong>{{ booking_submission.email }}</strong>.</p>
+            <div class="card course-card">
+                <div class="card-header logo-font text-center">Thank you</div>
+                <div class="card-body">
+                    <p>Your booking details are below. A confirmation email will be sent to <strong>{{ booking_submission.email }}</strong>.</p>
+                    <hr>
+                    <p></p>
+                    <p><strong>Your booking reference:</strong> {{ booking_submission.booking_reference }}</p>
+                    <p><strong>Booking under name:</strong> {{ booking_submission.full_name }}</p>
+                    <p><strong>Booked course:</strong> {{ booking_submission.booked_course }}</p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            
+
         </div>
     </div>
 </div>
