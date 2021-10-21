@@ -4,6 +4,7 @@ from django.conf import settings
 
 from .forms import BookingForm
 from .models import Booking
+from profiles.models import UserProfile
 from courses.models import Course
 
 import stripe
@@ -17,12 +18,14 @@ def booking(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     course_name = course.name
     course_price = course.course_type.price
+    user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
         course = get_object_or_404(Course, pk=course_id)
         course_price = course.course_type.price
 
         form_data = {
+            'user_profile': user_profile,
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'phone_number': request.POST['phone_number'],

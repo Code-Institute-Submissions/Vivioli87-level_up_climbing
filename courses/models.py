@@ -28,6 +28,7 @@ class CourseLesson(models.Model):
         return self.name
 
 
+# Type of course that can be re-run on different dates
 class CourseType(models.Model):
     level = models.ForeignKey('Level', null=True, blank=True,
                               on_delete=models.SET_NULL)
@@ -40,6 +41,7 @@ class CourseType(models.Model):
         return self.name
 
 
+# A specific event of a course time
 class Course(models.Model):
     name = models.CharField(max_length=254, null=True, blank=True)
     level = models.ForeignKey('Level', null=True, blank=True,

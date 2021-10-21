@@ -5,13 +5,14 @@ from .models import Booking
 class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ('full_name', 'email', 'phone_number',
+        fields = ('user_profile', 'full_name', 'email', 'phone_number',
                   'booking_total', 'booked_course')
 
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
         placeholders = {
+            'user_profile': 'User Profile',
             'full_name': 'Full Name',
             'email': 'Email Address',
             'phone_number': 'Phone Number',
