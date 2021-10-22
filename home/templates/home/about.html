@@ -25,8 +25,14 @@
     <div class="row text-center mb-4">
         <div class="col-12">
             <h1 class="logo-font pb-4">Our Venues</h1>
-    
+            <p>We are able to hold coaching sessions at 5 different climbing gyms accross Manchester</p>
+            <a href="{% url 'all_venues' %}" class="btn btn-success">View venues</a>
         </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-12 mb-4">
+            <img class="img-fluid" src="http://maps.google.com/maps/api/staticmap?center=53.466862,-2.240643&zoom=12&size=800x800&markers=size:mid|color:red|label:A|53.469495,-2.204242&markers=size:mid|color:red|label:B|53.474349,-2.184139&markers=size:mid|color:red|label:C|53.414168,-2.245245&markers=size:mid|color:red|label:D|53.491444,-2.245245&markers=size:mid|color:red|label:E|53.464072,-2.320576&key=AIzaSyBlSpQAy3QhnL7Dl415yppAYCUGw6oaSGo" alt="Map of all venues">
+        </div>  
     </div>
 </div>
 {% endblock %}
