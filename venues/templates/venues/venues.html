@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font mb-4">Our Venues</h2>
+            <p>Here are the venues around Manchester that we are able to coach at:</p>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col-12 mb-4">
+            <img class="img-fluid" src="http://maps.google.com/maps/api/staticmap?center=53.466862,-2.240643&zoom=12&size=800x800&markers=size:mid|color:red|label:A|53.469495,-2.204242&markers=size:mid|color:red|label:B|53.474349,-2.184139&markers=size:mid|color:red|label:C|53.414168,-2.245245&markers=size:mid|color:red|label:D|53.491444,-2.245245&markers=size:mid|color:red|label:E|53.464072,-2.320576&key=AIzaSyBlSpQAy3QhnL7Dl415yppAYCUGw6oaSGo" alt="Map of all venues">
+        </div>
+        {% for venue in venues|dictsort:"map_marker" %}
+            <div class="col-12 col-lg-4 mb-4">
+                <h4><strong class="text-danger">{{ venue.map_marker }}</strong> - {{ venue.name }}</h4>
+                <p>{{ venue.street_address1 }}</p>
+                <p>{{ venue.street_address2 }}</p>
+                <p>{{ venue.town_or_city }}</p>
+                <p>{{ venue.postcode }}</p>
+            </div>
+        {% endfor %}
+        
+    </div>
+    
+{% endblock %}
