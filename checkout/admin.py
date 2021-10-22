@@ -11,7 +11,7 @@ class BookingAdmin(admin.ModelAdmin):
               'booking_total',)
 
     list_display = ('booking_reference', 'booked_course', 'date',
-                    'user_profile','full_name', 'email',
+                    'user_profile', 'full_name', 'email',
                     'phone_number',)
 
     ordering = ('-date',)

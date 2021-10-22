@@ -41,7 +41,7 @@ class CourseType(models.Model):
         return self.name
 
 
-# A specific event of a course time
+# A specific event of a course
 class Course(models.Model):
     name = models.CharField(max_length=254, null=True, blank=True)
     level = models.ForeignKey('Level', null=True, blank=True,
