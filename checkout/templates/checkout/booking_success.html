@@ -19,15 +19,16 @@
                     <p><strong>Your booking reference:</strong> {{ booking_submission.booking_reference }}</p>
                     <p><strong>Booking under name:</strong> {{ booking_submission.full_name }}</p>
                     <p><strong>Booked course:</strong> {{ booking_submission.booked_course }}</p>
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'profile' %}" class="btn btn-primary">Go to Profile</a>
+                            <a href="{% url 'courses' %}" class="btn btn-success">Book another course</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <a href="{% url 'profile' %}" class="btn btn-primary">Go to Profile</a>
-            <a href="{% url 'courses' %}" class="btn btn-success">Book another course</a>
-        </div>
-    </div>
+
 </div>
 {% endblock %}

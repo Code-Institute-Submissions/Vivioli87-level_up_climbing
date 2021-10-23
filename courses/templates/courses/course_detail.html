@@ -16,7 +16,7 @@
                             {% for lesson in course_lessons %}
                                 {% if course.course_type == lesson.course_type %}
                                     <li>
-                                        <a class="course-detail-links" href="#" tabindex="0" data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="focus" title="{{ lesson.name}}" data-bs-content="{{ lesson.lesson.description }}">
+                                        <a class="course-detail-links" href="#" tabindex="0" data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" title="{{ lesson.name}}" data-content="{{ lesson.lesson.description }}">
                                             {{ lesson.name}}
                                         </a>
                                     </li>
@@ -32,7 +32,7 @@
                     <p class="card-text">Coach: {{ course.coach }}</p>
                     {% if available_course_places == 0 %}
                         <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
-                        <a href="{% url 'courses' %}" class="btn rounded-0">
+                        <a href="{% url 'courses' %}" class="btn btn-outline-dark rounded-0">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
                             </span>
@@ -41,7 +41,7 @@
                     {% else %}
                         {% if user_booked %}
                             <p class="card-text text-danger"> You already have a booking for this course, please check your profile page for information!</p>
-                            <a href="{% url 'courses' %}" class="btn rounded-0">
+                            <a href="{% url 'courses' %}" class="btn btn-outline-dark rounded-0">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
@@ -49,7 +49,7 @@
                             </a>
                             <a href="{% url 'booking' course.id %}" class="btn btn-success disabled">Book Course</a>
                         {% else %}
-                            <a href="{% url 'courses'  %}" class="btn rounded-0 back-button">
+                            <a href="{% url 'courses'  %}" class="btn btn-outline-dark rounded-0">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
@@ -66,5 +66,6 @@
 {% endblock %}
 
 {% block postloadjs %}
+    {{ block.super }} 
     <script src="{% static 'js/popover.js' %}"></script>
 {% endblock %}

@@ -10,17 +10,18 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center">
-            <h2 class="logo-font text-over-image mb-4">{{ course.name }} - Booking form</h2>
+            <h2 class="logo-font text-over-image mb-4">Booking form</h2>
         </div>
     </div>
     <div class="row">
         <div class="col">
             <div class="card course-card">
-                <div class="card-header logo-font text-center">Please fill out the form below to complete your booking for 
-                    <br> {{ course.name }} 
-                    <br> Start date: {{ course.start_date }}
-                </div>
-                <div class="card-body">
+                <div class="card-header logo-font text-center"> {{ course.name }}</div>
+                <div class="card-body ">
+                    <p class="text-center"><strong>Please fill out the form below to complete your booking for {{ course.name }}</strong></p>
+                    <p class="text-center"><strong>Start date:</strong> {{ course.start_date }}</p>
+                    <p class="text-center"><strong>Venue:</strong> {{ course.venue }}</p>
+                    <p class="text-center"><strong>Price:</strong> £{{ course.course_type.price }}</p>
                     <form action="{% url 'booking' course.id %}" method="POST" id="payment-form">
                         {% csrf_token %}
                             <fieldset class="rounded px-3 mb-5">
@@ -48,20 +49,20 @@
                                 <!--To display form errors on card payments-->
                                 <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                             </fieldset>
-                            <div class="submit-button text-right mt-5 mb-2">
-                                <a href="#" class="btn rounded-0 back-button">
+                            <div class="submit-button text-center mt-5 mb-2">
+                                <a href="#" class="btn btn-outline-dark rounded-0 back-button">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
-                                    <span>Back to course detail</span>
+                                    <span>Back to Course Details</span>
                                 </a>
-                                <button id="submit-button" class="btn rounded-0">
-                                    <span class="font-weight-bold">Complete Booking</span>
+                                <button id="submit-button" class="btn btn-success rounded-0">
+                                    <span class="">Complete Booking</span>
                                     <span class="icon">
                                         <i class="fas fa-lock"></i>
                                     </span>
                                 </button>
-                                <p class="small text-danger my-0">
+                                <p class="small text-danger mt-2 ">
                                     <span class="icon">
                                         <i class="fas fa-exclamation-circle"></i>
                                     </span>

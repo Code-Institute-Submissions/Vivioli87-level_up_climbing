@@ -40,8 +40,8 @@ def booking(request, course_id):
             
             return redirect(reverse('booking_success',
                                     args=[booking_submission.booking_reference]))
-        # else:
-        #     messages.error(request, 'There was an error on the booking form')
+        else:
+            messages.error(request, 'There was an error on the booking form')
 
     else:
         stripe_total = round(course_price * 100)
@@ -72,7 +72,7 @@ def booking_success(request, booking_reference):
     booking_submission = get_object_or_404(Booking, 
                                            booking_reference=booking_reference)
     messages.success(request,
-                     f'Booking successfully processes! {booking_reference}')
+                     f'Booking successfully processed! {booking_reference}')
 
     template = 'checkout/booking_success.html'
     context = {
