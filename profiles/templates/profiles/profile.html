@@ -16,22 +16,26 @@
                 </div>
                 <div class="col-12 col-lg-8">
                     <h2 class="logo-font mb-4">{{ profile }}'s Profile</h2>
-                    <h4> My Bookings</h4>
-                    <ul>
-                        {% for booking in bookings %}
-                            <li> 
-                                <p><strong>{{ booking.booked_course }}</strong></p>
-                                {% for c in course %}
-                                    {% if booking.booked_course == c.name %}
-                                    <p>Course level: {{ c.level }}</p>
-                                    <p>Course start date: {{ c.start_date }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                                <p>Booking reference: {{ booking.booking_reference }}</p>
-                                <p>Booking amount: £{{ booking.booking_total }}</p>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    {% if profile.is_coach %}
+                        <h4>My Classes</h4>
+                    {% else %}
+                        <h4>My Bookings</h4>
+                        <ul>
+                            {% for booking in bookings %}
+                                <li> 
+                                    <p><strong>{{ booking.booked_course }}</strong></p>
+                                    {% for c in course %}
+                                        {% if booking.booked_course == c.name %}
+                                        <p>Course level: {{ c.level }}</p>
+                                        <p>Course start date: {{ c.start_date }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <p>Booking reference: {{ booking.booking_reference }}</p>
+                                    <p>Booking amount: £{{ booking.booking_total }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>
