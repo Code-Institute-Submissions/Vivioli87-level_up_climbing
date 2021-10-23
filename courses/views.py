@@ -1,8 +1,12 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Course, CourseLesson
 from checkout.models import Booking
 from profiles.models import UserProfile
+
+from .forms import CourseForm
 # Create your views here.
 
 
@@ -42,3 +46,30 @@ def course_detail(request, course_id):
     }
 
     return render(request, 'courses/course_detail.html', context)
+
+
+@login_required
+def add_course(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        return redirect(reverse('home'))
+    
+    if request.method == 'POST':
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save()
+            messages.success(request, 'Successfully added course!')
+            return redirect(reverse('course_detail', args=[course.id]))
+        else:
+            messages.error(request,
+                           ('Failed to add course. '
+                            'Please ensure the form is valid.'))
+    else:
+        form = CourseForm()
+
+    template = 'courses/add_course.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

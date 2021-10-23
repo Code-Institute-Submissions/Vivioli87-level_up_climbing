@@ -1,4 +1,6 @@
 from django.db import models
+from venues.models import Venue
+from profiles.models import UserProfile
 
 
 class Level(models.Model):
@@ -49,6 +51,8 @@ class Course(models.Model):
     course_type = models.ForeignKey('CourseType', null=True, blank=True,
                                     on_delete=models.SET_NULL)
     start_date = models.DateTimeField(auto_now_add=False)
+    venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.SET_NULL)
+    coach = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
