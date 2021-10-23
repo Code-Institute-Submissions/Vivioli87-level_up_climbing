@@ -9,7 +9,7 @@ class Venue(models.Model):
     postcode = models.CharField(max_length=20, null=False, blank=False)
     lat = models.DecimalField(max_digits=10, decimal_places=6)
     lng = models.DecimalField(max_digits=10, decimal_places=6)
-    map_marker = models.CharField(max_length=1, null=False, blank=False, default='A')
+    map_marker = models.CharField(max_length=1, null=False, blank=False)
 
     def __str__(self):
         return self.name
