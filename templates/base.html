@@ -47,7 +47,7 @@
                         <li class="list-inline-item">
                             <div class="text-center">
                                 <div><i class="fas fa-info-circle fa-lg"></i></div>
-                                <a href="{% url 'about' %}" class="nav-link text-dark my-0 py-0">
+                                <a href="{% url 'about' %}" class="nav-link my-0 py-0">
                                     About
                                 </a>
                             </div>
@@ -55,13 +55,13 @@
                         <li class="list-inline-item">
                             <div class="text-center">
                                 <div><i class="fas fa-newspaper fa-lg"></i></div>
-                                <a href="#" class="nav-link text-dark my-0 py-0">
+                                <a href="#" class="nav-link my-0 py-0">
                                     Articles
                                 </a>
                             </div>
                         </li>
                         <li class="list-inline-item dropdown">
-                            <a class="text-dark nav-link" href="#" id="class-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="#" id="class-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
                                     <div><i class="fas fa-graduation-cap fa-lg"></i></div>
                                     <p class="my-0">Classes</p>
@@ -73,7 +73,7 @@
                             </div>
                         </li>
                         <li class="list-inline-item dropdown">
-                            <a class="text-dark nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
                                     <div><i class="fas fa-user fa-lg"></i></div>
                                     <p class="my-0">My Account</p>
@@ -101,6 +101,9 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a href="{% url 'home' %}" class="nav-link main-logo-link">
+                        <h4 class="text-dark my-0"><strong><span class="logo-font">Level Up!</span></strong> Climbing</h4>
+                    </a>
                     {% include 'includes/mobile-header.html' %}
                 </nav>
             </div>

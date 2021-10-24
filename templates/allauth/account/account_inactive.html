@@ -7,10 +7,14 @@
 
 {% block content %}
 
-<div class="form-over-image">
-    <h1>{% trans "Account Inactive" %}</h1>
-
-    <p>{% trans "This account is inactive." %}</p>
+<div class="transparent-overlay"></div>
+<div class="card course-card text-center">
+    <div class="card-header">
+        <h1>{% trans "Account Inactive" %}</h1>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{% trans "This account is inactive." %}</p>
+    </div>
 </div>
-{% endblock %}
 
+{% endblock %}

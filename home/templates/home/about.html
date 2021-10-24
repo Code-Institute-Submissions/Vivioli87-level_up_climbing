@@ -17,29 +17,6 @@
     <hr>
     <div class="row text-center mb-4">
         <div class="col-12">
-            <h1 class="text-over-image pb-4">Our Coaches</h1>
-                    {% for coach in coaches %}
-                        <div class="row">
-                            <div class="col-12 col-xl-6">
-                                <div class="row coach-row">
-                                    <div class="col-6">
-                                        <img class="coach-img img-fluid" src="{{ coach.image.url }}" alt="Coach {{ coach.coach.full_name }}">
-                                    </div>
-                                    <div class="col-6 text-left">
-                                        <p><strong>{{ coach.coach.full_name }}</strong>
-                                        <br>
-                                        {{ coach.about_me|linebreaks }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    {% endfor %}
-                </ul>    
-        </div>
-    </div>
-    <hr>
-    <div class="row text-center mb-4">
-        <div class="col-12">
             <h1 class="text-over-image pb-4">Our Venues</h1>
             <p>We are able to hold coaching sessions at 5 different climbing gyms accross Manchester</p>
             <a href="{% url 'all_venues' %}" class="btn btn-success btn-custom">View venues</a>
@@ -49,6 +26,33 @@
         <div class="col-12 mb-4">
             <img class="img-fluid" src="http://maps.google.com/maps/api/staticmap?center=53.466862,-2.240643&zoom=12&size=800x800&markers=size:mid|color:red|label:A|53.469495,-2.204242&markers=size:mid|color:red|label:B|53.474349,-2.184139&markers=size:mid|color:red|label:C|53.414168,-2.245245&markers=size:mid|color:red|label:D|53.491444,-2.245245&markers=size:mid|color:red|label:E|53.464072,-2.320576&key=AIzaSyBlSpQAy3QhnL7Dl415yppAYCUGw6oaSGo" alt="Map of all venues">
         </div>  
+    </div>
+    <hr>
+    <div class="row text-center mb-4">
+        <div class="col-12">
+            <h1 class="text-over-image pb-4">Our Coaches</h1>
+            <div class="row">
+            {% for coach in coaches %}
+                <div class="col-12 col-md-6">
+                    <div class="card course-card mb-3" style="max-width: 640px;">
+                        <div class="card-header">
+                            <h5>{{ coach.coach.full_name }}</h5>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-md-6">
+                                <img src="{{ coach.image.url }}" class="card-img" alt="Coach {{ coach.coach.full_name }}">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body d-none d-md-block">
+                                    <p class="card-text coach-text">{{ coach.about_me|linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+            </div> 
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col text-center">
             <div class="card course-card">
-                <div class="card-header logo-font">{{ course.name }}</div>
+                <div class="card-header">{{ course.name }}</div>
                 <div class="card-body">
                     <p class="card-text">Level - {{ course.level }}</p>
                     <p class="card-text">{{ course.course_type.description }}</p>
@@ -31,7 +31,7 @@
                     <p class="card-text">Capacity: {{ capacity }}</p>
                     <p class="card-text">Available places: {{ available_course_places }}</p>
                     <p class="card-text">Venue: {{ course.venue }}</p>
-                    <p class="card-text">Coach: {{ course.coach }}</p>
+                    <p class="card-text">Coach: {{ course.coach.full_name }}</p>
                     {% if available_course_places == 0 %}
                         <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
                         <a href="{% url 'courses' %}" class="btn btn-outline-dark">

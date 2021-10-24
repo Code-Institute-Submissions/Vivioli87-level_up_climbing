@@ -58,10 +58,15 @@ header {
     padding: 0 1rem;
 }
 
+.navbar-light .navbar-nav .nav-link, .list-inline-item, a.nav-link {
+    color: #282626;
+}
+
 .logo-font {
     color: #10bc6c;
     text-transform: uppercase;
     font-weight: bolder;
+    text-shadow: 2px 2px 2px #127245;
 }
 
 .custom-links {
@@ -155,21 +160,6 @@ header {
     border-bottom-color: #343a40 !important;
 }
 
-/* form/all auth pages styling when over the main body image*/
-.form-over-image {
-    background: #ffffff99;
-    margin: 0 auto;
-    width: max-content;
-    padding: 1rem 4rem 2rem;
-}
-
-.form-over-image h1 {
-    color: #10bc6c;
-    text-transform: uppercase;
-    font-weight: bolder;
-    text-align: center;
-}
-
 /* Coaches in about page*/
 .coach-row {
     max-height: 400px;
@@ -179,6 +169,10 @@ header {
 .coach-img {
     width: auto;
     max-height: 400px;
+}
+
+.coach-text {
+    font-size: 14px;
 }
 
 
@@ -197,6 +191,8 @@ header {
     letter-spacing: 2px;
     font-size: 18px;
     border-bottom: 1px solid #127245;
+    text-transform: uppercase;
+    font-weight: bolder;
 }
 
 label {

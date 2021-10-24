@@ -1,9 +1,9 @@
 from django.contrib import admin
 from .models import UserProfile, Coach
 
+
 class UserProfileAdmin(admin.ModelAdmin):
-    readonly_fields = ('user', 'full_name', 'email',
-                       'phone_number')
+    readonly_fields = ('user',)
 
     fields = ('user', 'full_name', 'email',
               'phone_number', 'is_coach')
