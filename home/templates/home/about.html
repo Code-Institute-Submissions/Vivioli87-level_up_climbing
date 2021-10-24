@@ -18,7 +18,23 @@
     <div class="row text-center mb-4">
         <div class="col-12">
             <h1 class="logo-font pb-4">Our Coaches</h1>
-    
+                    {% for coach in coaches %}
+                        <div class="row">
+                            <div class="col-12 col-xl-6">
+                                <div class="row coach-row">
+                                    <div class="col-6">
+                                        <img class="coach-img img-fluid" src="{{ coach.image.url }}" alt="Coach {{ coach.coach.full_name }}">
+                                    </div>
+                                    <div class="col-6 text-left">
+                                        <p><strong>{{ coach.coach.full_name }}</strong>
+                                        <br>
+                                        {{ coach.about_me|linebreaks }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    {% endfor %}
+                </ul>    
         </div>
     </div>
     <hr>

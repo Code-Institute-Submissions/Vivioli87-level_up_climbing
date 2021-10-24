@@ -142,6 +142,17 @@ a {
     text-align: center;
 }
 
+/* Coaches in about page*/
+.coach-row {
+    max-height: 400px;
+    width: 80%;
+}
+
+.coach-img {
+    width: auto;
+    max-height: 400px;
+}
+
 
 /* Course pages */
 
