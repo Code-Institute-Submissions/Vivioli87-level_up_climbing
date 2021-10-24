@@ -8,16 +8,16 @@
 <div class="container-fluid">
     <div class="row text-center mb-4">
         <div class="col-12">
-            <h1 class="logo-font pb-4">Who are we?</h1>
+            <h1 class="text-over-image pb-4">Who are we?</h1>
             <p>Level up! Climbing are a group of experiened coaches within the Greater Manchester area, who are passionate about passing on their climbing knowledge to others.</p>
             <p>We provide training at various venues, from group classes to 1:1 coaching and all abillities and ages.</p>
-            <p>With Level Up! Climbing you will find a coaching option suitable for you! <a href="#">Click here</a> to view all our available coaching options.</p>
+            <p>With Level Up! Climbing you will find a coaching option suitable for you! <a class="custom-links" href="{% url 'courses' %}">Click here</a> to view all our available coaching options.</p>
         </div>
     </div>
     <hr>
     <div class="row text-center mb-4">
         <div class="col-12">
-            <h1 class="logo-font pb-4">Our Coaches</h1>
+            <h1 class="text-over-image pb-4">Our Coaches</h1>
                     {% for coach in coaches %}
                         <div class="row">
                             <div class="col-12 col-xl-6">
@@ -40,9 +40,9 @@
     <hr>
     <div class="row text-center mb-4">
         <div class="col-12">
-            <h1 class="logo-font pb-4">Our Venues</h1>
+            <h1 class="text-over-image pb-4">Our Venues</h1>
             <p>We are able to hold coaching sessions at 5 different climbing gyms accross Manchester</p>
-            <a href="{% url 'all_venues' %}" class="btn btn-success">View venues</a>
+            <a href="{% url 'all_venues' %}" class="btn btn-success btn-custom">View venues</a>
         </div>
     </div>
     <div class="row text-center">

@@ -6,18 +6,35 @@ html {
 body {
     background: url('/media/yns-plt-NY1D4Zni7fc-unsplash.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #555;
+    color: #000000;
     font-family: 'Lato' ;
 }
 
-/* overlay on pages I do not want the main image*/
+p, .btn, .btn-outline-dark, .btn-custom , .custom-links, .course-detail-links {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+}
+
+/* overlay on pages with text and where I dont want image showing*/
 .overlay {
 	height: 100%;
 	width: 100%;
 	top: 0;
 	left: 0;
 	position: fixed;
-	background: white;
+    background-color: #fff; /*covers image*/
+    background-image: linear-gradient(#fff, #10bc6c80);
+	z-index: -1;
+}
+
+/* overlay on pages with forms where I want transparent overlay over image*/
+.transparent-overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+    background-image: linear-gradient(#fff, #10bc6c80);
 	z-index: -1;
 }
 
@@ -47,9 +64,15 @@ header {
     font-weight: bolder;
 }
 
-a {
-    color: #10bc6c;
+.custom-links {
+    color: #127245;
     font-weight: bold;
+    text-decoration: underline;
+}
+
+.btn-custom {
+    background-color: #127245;
+    color: #fff;
 }
 
 .sign-up-button {
@@ -59,11 +82,16 @@ a {
 }
 
 .container-over-image h1, .text-over-image {
-    text-shadow: 4px 4px 8px #0c3d26;
+    text-shadow: 4px 4px 4px #fff;
+    font-size: 50px;
+    color: #127245;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-weight: bolder;
 }
 
 .header-container {
-    padding-top: 164px;
+    padding-top: 100px;
 }
 
 /* toasts */
@@ -165,7 +193,19 @@ a {
 
 .course-card > .card-header {
     background-color: #d5f2e4;
-    text-shadow: 1px 1px 0.5px #0c3d26;
+    color: #127245;
+    letter-spacing: 2px;
+    font-size: 18px;
+    border-bottom: 1px solid #127245;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: #127245;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
 }
 
 .popover {
@@ -174,12 +214,12 @@ a {
 
 .popover-header {
     background-color: #d5f2e4;
-    text-shadow: 1px 1px 0.5px #0c3d26;
-    color: #10bc6c;
+    color: #127245;
 }
 
 .course-detail-links {
-    color: #10bc6c;
+    color: #127245;
+    text-decoration: underline;
 }
 
 

@@ -9,35 +9,36 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col ">
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <img src="/media/marian-kroell-9iatZRC4-VQ-unsplash.jpg" class="img-fluid" alt="A climbing wall">
-                </div>
-                <div class="col-12 col-lg-8">
-                    <h2 class="logo-font mb-4">{{ profile }}'s Profile</h2>
-                    {% if profile.is_coach %}
-                        <h4>My Classes</h4>
-                    {% else %}
-                        <h4>My Bookings</h4>
-                        <ul>
-                            {% for booking in bookings %}
-                                <li> 
-                                    <p><strong>{{ booking.booked_course }}</strong></p>
-                                    {% for c in course %}
-                                        {% if booking.booked_course == c.name %}
-                                        <p>Course level: {{ c.level }}</p>
-                                        <p>Course start date: {{ c.start_date }}</p>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <p>Booking reference: {{ booking.booking_reference }}</p>
-                                    <p>Booking amount: £{{ booking.booking_total }}</p>
-                                </li>
+        <div class="col-12">
+            <h2 class="text-over-image text-center mb-4">{{ profile }}'s Profile</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h4 class="text-center text-uppercase">My Personal Information</h4>
+
+        </div>
+        <div class="col-12 col-lg-6">
+            {% if profile.is_coach %}
+                <h4 class="text-center text-uppercase">My Classes</h4>
+            {% else %}
+                <h4 class="text-center text-uppercase">My Bookings</h4>
+                <ul>
+                    {% for booking in bookings %}
+                        <li> 
+                            <p><strong>{{ booking.booked_course }}</strong></p>
+                            {% for c in course %}
+                                {% if booking.booked_course == c.name %}
+                                <p>Course level: {{ c.level }}</p>
+                                <p>Course start date: {{ c.start_date }}</p>
+                                {% endif %}
                             {% endfor %}
-                        </ul>
-                    {% endif %}
-                </div>
-            </div>
+                            <p>Booking reference: {{ booking.booking_reference }}</p>
+                            <p>Booking amount: £{{ booking.booking_total }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
     </div> 
 </div>
