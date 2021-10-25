@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # To change format of the date on website
 from django.conf.locale.en import formats as en_formats
@@ -122,11 +123,15 @@ WSGI_APPLICATION = 'level_up_climbing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse('postgres://wwjkkxccqpjqug:462d03d26baa12409e449fc3c732e080f3b093b11fa11cd04cc9930a67de3c9c@ec2-54-74-77-126.eu-west-1.compute.amazonaws.com:5432/deppsnuc7556mq')
 }
 
 
