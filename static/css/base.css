@@ -69,6 +69,16 @@ header {
     text-shadow: 2px 2px 2px #127245;
 }
 
+.bold-green-text{
+    color: #127245;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+li {
+    list-style-type: none;
+}
+
 .custom-links {
     color: #127245;
     font-weight: bold;
@@ -179,7 +189,7 @@ header {
 /* Course pages */
 
 .course-card {
-    max-width: 80%;
+    max-width: 60%;
     margin: 0 auto;
     margin-bottom: 2rem;
     box-shadow: 5px 5px 5px #888888;
@@ -237,5 +247,16 @@ label {
 
     body {
         height: calc(100vh - 116px);
+    }
+    .course-card {
+        max-width: 80%;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .course-card {
+        max-width: 95%;
     }
 }

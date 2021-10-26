@@ -15,31 +15,56 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <h4 class="text-center text-uppercase">My Personal Information</h4>
+            <div class="card course-card mt-4">
+                <div class="card-header text-center">
+                    <h4>My Personal Details</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text bold-green-text text-center"> Please update any information that is missing!</p>
+                    <p class="card-text"><span class="bold-green-text">Full Name:</span> {{ profile.full_name|default_if_none:"--" }}</p>
+                    <p class="card-text"><span class="bold-green-text">Email:</span> {{ profile.email|default_if_none:"--" }}</p>
+                    <p class="card-text"><span class="bold-green-text">Phone Number:</span> {{ profile.phone_number|default_if_none:"--" }}</p>
+                    {% if profile.is_coach %}
+                        <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
+                        <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
+                        <img src="{{ coach.image.url }}" alt="{{profile}}'s picture" class="coach-img">
+                    {% endif %}
+                    <div class="text-center">
+                        <a href="#" class="btn btn-success btn-custom">
+                            <span class="icon">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span>Add/Update Information</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="col-12 col-lg-6">
             {% if profile.is_coach %}
-                <h4 class="text-center text-uppercase">My Classes</h4>
+                <h4 class="text-center text-uppercase bold-green-text">My Classes</h4>
             {% else %}
-                <h4 class="text-center text-uppercase">My Bookings</h4>
-                <ul>
-                    {% for booking in bookings %}
-                        <li> 
-                            <p><strong>{{ booking.booked_course }}</strong></p>
+                <h4 class="text-center text-uppercase bold-green-text">My Bookings</h4>
+                {% for booking in bookings %}
+                    <div class="card course-card mt-4">
+                        <div class="card-header text-center">
+                            {{ booking.booked_course }}
+                        </div>
+                        <div class="card-body">
                             {% for c in course %}
                                 {% if booking.booked_course == c.name %}
-                                <p>Course level: {{ c.level }}</p>
-                                <p>Course start date: {{ c.start_date }}</p>
+                                <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
+                                <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
                                 {% endif %}
                             {% endfor %}
-                            <p>Booking reference: {{ booking.booking_reference }}</p>
-                            <p>Booking amount: £{{ booking.booking_total }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
+                            <p class="card-text"><span class="bold-green-text">Booking reference:</span> {{ booking.booking_reference }}</p>
+                            <p class="card-text"><span class="bold-green-text">Booking amount:</span> £{{ booking.booking_total }}</p>
+                        </div>
+                    </div>
+                {% endfor %}  
             {% endif %}
-        </div>
-    </div> 
+        </div> 
+    </div>
 </div>
 {% endblock %}

@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <p class="card-text">Level - {{ course.level }}</p>
                     <p class="card-text">{{ course.course_type.description }}</p>
-                    <p class="card-text">Lessons include:</p>
+                    <p class="card-text bold-green-text">Lessons include:</p>
                         <ul class="list-unstyled">
                             {% for lesson in course_lessons %}
                                 {% if course.course_type == lesson.course_type %}
@@ -25,13 +25,13 @@
                                 {% endif %}
                             {% endfor %}
                         </ul>
-                    <p class="card-text">Course start date & time: {{ course.start_date }}</p>
+                    <p class="card-text"><span class="bold-green-text">Course start date & time:</span> {{ course.start_date }}</p>
                     <p class="card-text">The course runs for 4 weeks. Classes will be on the same week day and time as the first lesson.</p>
-                    <p class="card-text">Price: £{{ course.course_type.price }}</p>
-                    <p class="card-text">Capacity: {{ capacity }}</p>
-                    <p class="card-text">Available places: {{ available_course_places }}</p>
-                    <p class="card-text">Venue: {{ course.venue }}</p>
-                    <p class="card-text">Coach: {{ course.coach.full_name }}</p>
+                    <p class="card-text"><span class="bold-green-text">Price:</span> £{{ course.course_type.price }}</p>
+                    <p class="card-text"><span class="bold-green-text">Capacity:</span> {{ capacity }}</p>
+                    <p class="card-text"><span class="bold-green-text">Available places:</span> {{ available_course_places }}</p>
+                    <p class="card-text"><span class="bold-green-text">Venue:</span> {{ course.venue }}</p>
+                    <p class="card-text"><span class="bold-green-text">Coach:</span> {{ course.coach.full_name }}</p>
                     {% if available_course_places == 0 %}
                         <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
                         <a href="{% url 'courses' %}" class="btn btn-outline-dark">
