@@ -73,3 +73,40 @@ def add_course(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_course(request, course_id):
+    """
+    Edit a course
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 
+                       'Sorry, you do not have permissions to do that.')
+        return redirect(reverse('home'))
+
+    course = get_object_or_404(Course, pk=course_id)
+    start_date = course.start_date.isoformat()
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            course = form.save()
+            messages.success(request, 'Successfully edited the course!')
+            return redirect(reverse('course_detail', args=[course.id]))
+        else:
+            messages.error(request,
+                           ('Failed to edit course. '
+                            'Please ensure the form is valid.'))
+    else:
+        form = CourseForm(instance=course, initial={
+            'start_date': start_date,
+            })
+
+    template = 'courses/edit_course.html'
+    context = {
+        'form': form,
+        'course': course,
+        'start_date': start_date,
+    }
+
+    return render(request, template, context)

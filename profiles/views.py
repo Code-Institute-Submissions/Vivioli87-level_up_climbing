@@ -54,7 +54,6 @@ def profile(request):
                 form.save()
                 messages.success(request, 'Profile updated successfully')
 
-        
         form = UserProfileForm(instance=profile)
         bookings = Booking.objects.filter(user_profile=profile)
         course = Course.objects.all().order_by('start_date')
