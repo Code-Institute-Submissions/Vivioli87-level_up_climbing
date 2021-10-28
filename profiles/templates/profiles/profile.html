@@ -23,24 +23,35 @@
                     <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button class="btn btn-success btn-custom">Update Information</button>
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-success btn-custom" name="profile-info">Update Information</button>
+                        </div>
                     </form>
-                    <!-- {% if profile.is_coach %}
-                        <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
-                        <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
-                        <img src="{{ coach.image.url }}" alt="{{profile}}'s picture" class="coach-img">
-                    {% endif %}
-                    <div class="text-center">
-                        <a href="#" class="btn btn-success btn-custom">
-                            <span class="icon">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <span>Add/Update Information</span>
-                        </a>
-                    </div> -->
                 </div>
             </div>
-
+            {% if profile.is_coach %}
+                <div class="card course-card mt-4">
+                    <div class="card-header text-center">
+                        <h4>My Coaching Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'profile' %}" method="POST" id="coach-update-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in coach_form %}
+                                {% if field.name != 'image' %}
+                                    {{ field | as_crispy_field }}
+                                {% else %}
+                                    {{ field }}
+                                {% endif %}
+                            {% endfor %}
+                            <div class="mt-4 text-center">
+                                <button class="btn btn-success btn-custom" name="coach-info">Update Information</button>
+                            </div>
+                        </form>
+                    </div>
+                
+                </div>
+            {% endif %}
         </div>
         <div class="col-12 col-lg-6">
             {% if profile.is_coach %}
@@ -67,5 +78,6 @@
             {% endif %}
         </div> 
     </div>
+    
 </div>
 {% endblock %}

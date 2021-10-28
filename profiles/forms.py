@@ -1,4 +1,6 @@
 from django import forms
+from django.forms.widgets import ClearableFileInput
+
 from .models import UserProfile, Coach
 
 
@@ -6,7 +8,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ('user', 'is_coach',)
-    
+
 
     def __init__(self, *args, **kwargs):
 
@@ -21,28 +23,29 @@ class UserProfileForm(forms.ModelForm):
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0'
             self.fields[field].label = False
 
 
-# class CoachForm(forms.ModelForm):
-#     class Meta:
-#         model = Coach
-#         exclude = ('coach',)
-    
+class CoachForm(forms.ModelForm):
+    class Meta:
+        model = Coach
+        exclude = ('coach',)
 
-#     def __init__(self, *args, **kwargs):
+    image = forms.ImageField(label='Image', required=False, widget=ClearableFileInput)
 
-#         super().__init__(*args, **kwargs)
-#         placeholders = {
-#             'about_me': 'About Me',
-#             'default_email': 'Email',
-#             'default_phone_number': 'Phone Number',
-#         }
+    def __init__(self, *args, **kwargs):
 
-#          self.fields['default_full_name'].widget.attrs['autofocus'] = True
-#          for field in self.fields:
-#             placeholder = placeholders[field]
-#             self.fields[field].widget.attrs['placeholder'] = placeholder
-#             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
-#             self.fields[field].label = False
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'about_me': 'About Me',
+            'image_url': 'Image URL',
+            'image': 'Image'
+        }
+
+        self.fields['about_me'].widget.attrs['autofocus'] = True
+        for field in self.fields:
+            placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'border-black rounded-0'
+            self.fields[field].label = False
