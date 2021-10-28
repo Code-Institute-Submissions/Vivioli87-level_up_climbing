@@ -228,6 +228,48 @@ label {
     text-decoration: underline;
 }
 
+/* Articles*/
+
+.card.article-card {
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.article-card-header, .article-detail-card > .card-header {
+    background-color: #d5f2e4;
+    color: #127245;
+    letter-spacing: 2px;
+    font-size: 18px;
+    border-bottom: 1px solid #127245;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.article-overview > p.card-text, .article-overview > a {
+    font-size: 14px;
+}
+
+.article-detail-card {
+    background-color: #fff;
+    letter-spacing: 2px;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.article-detail-card > img {
+    max-width: 50%;
+    float: left;
+    margin: 20px;
+}
+
+.article-detail-card > .card-body {
+    float: none;
+}
+
 
 
 /* Media Queries */

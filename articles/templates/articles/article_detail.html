@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="transparent-overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="article-detail-card mb-3">
+                <div class="card-header">
+                    <h2 class="article-detail-title text-center mb-4">{{ article.title }}</h2>
+                </div>
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="d-none d-md-block">
+                <div class="card-body">
+                    <p class="card-text">{{ article.content|linebreaks }}</p>
+                    <p class="card-text"><small class="bold-green-text">Created date: {{ article.created_date }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
