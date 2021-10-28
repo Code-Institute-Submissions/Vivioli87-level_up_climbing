@@ -74,22 +74,8 @@ def booking(request, course_id):
 
 def booking_success(request, booking_reference):
 
-    save_info = request.session.get('save_info')
     booking_submission = get_object_or_404(Booking, 
                                            booking_reference=booking_reference)
-    profile = UserProfile.objects.get(user=request.user)
-    booking_submission.user_profile = profile
-    booking_submission.save()
-    
-    if save_info:
-        profile_data = {
-            'full_name': booking_submission.full_name,
-            'phone_number': booking_submission.phone_number,
-            'email': booking_submission.email,
-        }
-        user_profile_form = UserProfileForm(profile_data, instance=profile)
-        if user_profile_form.is_valid():
-            user_profile_form.save()
 
     messages.success(request,
                      f'Booking successfully processed! {booking_reference}')
