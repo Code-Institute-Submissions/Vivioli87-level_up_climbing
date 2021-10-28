@@ -29,64 +29,26 @@
                     </form>
                 </div>
             </div>
-            {% if profile.is_coach %}
-                <div class="card course-card mt-4">
-                    <div class="card-header text-center">
-                        <h4>My Coaching Information</h4>
-                    </div>
-                    <div class="card-body">
-                        <form action="{% url 'profile' %}" method="POST" id="coach-update-form" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% for field in coach_form %}
-                                {% if field.name != 'image' %}
-                                    {{ field | as_crispy_field }}
-                                {% else %}
-                                    {{ field }}
-                                {% endif %}
-                            {% endfor %}
-                            <div class="mt-4 text-center">
-                                <button class="btn btn-success btn-custom" name="coach-info">Update Information</button>
-                            </div>
-                        </form>
-                    </div>
-                
-                </div>
-            {% endif %}
         </div>
         <div class="col-12 col-lg-6">
-            {% if profile.is_coach %}
-                <h4 class="text-center text-uppercase bold-green-text">My Classes</h4>
-                    {% for course in coaches_courses %}
-                        <div class="card course-card mt-4">
-                            <div class="card-header text-center">
-                                {{ course.name }}
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text"><span class="bold-green-text">Course start date:</span>   {{ course.start_date }}</p>
-                                <p class="card-text"><span class="bold-green-text">Venue:</span> {{ course.venue }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-            {% else %}
-                <h4 class="text-center text-uppercase bold-green-text">My Bookings</h4>
-                {% for booking in bookings %}
-                    <div class="card course-card mt-4">
-                        <div class="card-header text-center">
-                            {{ booking.booked_course }}
-                        </div>
-                        <div class="card-body">
-                            {% for c in course %}
-                                {% if booking.booked_course == c.name %}
-                                <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
-                                <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
-                                {% endif %}
-                            {% endfor %}
-                            <p class="card-text"><span class="bold-green-text">Booking reference:</span> {{ booking.booking_reference }}</p>
-                            <p class="card-text"><span class="bold-green-text">Booking amount:</span> £{{ booking.booking_total }}</p>
-                        </div>
+            <h4 class="text-center text-uppercase bold-green-text">My Bookings</h4>
+            {% for booking in bookings %}
+                <div class="card course-card mt-4">
+                    <div class="card-header text-center">
+                        {{ booking.booked_course }}
                     </div>
-                {% endfor %}  
-            {% endif %}
+                    <div class="card-body">
+                        {% for c in course %}
+                            {% if booking.booked_course == c.name %}
+                            <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
+                            <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        <p class="card-text"><span class="bold-green-text">Booking reference:</span> {{ booking.booking_reference }}</p>
+                        <p class="card-text"><span class="bold-green-text">Booking amount:</span> £{{ booking.booking_total }}</p>
+                    </div>
+                </div>
+            {% endfor %}  
         </div> 
     </div>
     
