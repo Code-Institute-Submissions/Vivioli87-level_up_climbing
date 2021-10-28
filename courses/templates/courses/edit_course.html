@@ -18,7 +18,7 @@
                                 {{ field | as_crispy_field }}
                             {% else %}
                                 <label for="{{ field.name }}" class="pr-5 pb-4">Start date & time:</label>
-                                <input type="datetime-local" id="{{ field.name }}" name="{{ field.name }}">
+                                <input type="datetime-local" id="{{ field.name }}" name="{{ field.name }}" value="{{course.start_date|date:'Y-m-d'}}T{{course.start_date|time:'H:i:s'}}">
                             {% endif %}
                         {% endfor %}
                         <div class="text-center pt-4">

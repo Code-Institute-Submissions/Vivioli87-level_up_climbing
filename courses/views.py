@@ -35,8 +35,6 @@ def course_detail(request, course_id):
     user_booked = Booking.objects.filter(booked_course=course, user_profile=profile)
     available_course_places = capacity - course_bookings
 
-    print(user_booked)
-
     context = {
         'course': course,
         'course_lessons': course_lessons,
@@ -86,7 +84,6 @@ def edit_course(request, course_id):
         return redirect(reverse('home'))
 
     course = get_object_or_404(Course, pk=course_id)
-    start_date = course.start_date.isoformat()
     if request.method == 'POST':
         form = CourseForm(request.POST, instance=course)
         if form.is_valid():
@@ -98,15 +95,12 @@ def edit_course(request, course_id):
                            ('Failed to edit course. '
                             'Please ensure the form is valid.'))
     else:
-        form = CourseForm(instance=course, initial={
-            'start_date': start_date,
-            })
+        form = CourseForm(instance=course)
 
     template = 'courses/edit_course.html'
     context = {
         'form': form,
         'course': course,
-        'start_date': start_date,
     }
 
     return render(request, template, context)
