@@ -1,4 +1,7 @@
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+
+from profiles.models import UserProfile
 
 
 class StripeWH_Handler:
@@ -18,8 +21,6 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        intent = event.data.object
-        print(intent)
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)

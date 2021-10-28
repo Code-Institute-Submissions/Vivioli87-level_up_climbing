@@ -20,11 +20,12 @@
                     <h4>My Personal Details</h4>
                 </div>
                 <div class="card-body">
-                    <p class="card-text bold-green-text text-center"> Please update any information that is missing!</p>
-                    <p class="card-text"><span class="bold-green-text">Full Name:</span> {{ profile.full_name|default_if_none:"--" }}</p>
-                    <p class="card-text"><span class="bold-green-text">Email:</span> {{ profile.email|default_if_none:"--" }}</p>
-                    <p class="card-text"><span class="bold-green-text">Phone Number:</span> {{ profile.phone_number|default_if_none:"--" }}</p>
-                    {% if profile.is_coach %}
+                    <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-success btn-custom">Update Information</button>
+                    </form>
+                    <!-- {% if profile.is_coach %}
                         <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
                         <p class="card-text"><span class="bold-green-text">About me:</span> {{ coach.about_me|default_if_none:"--" }}</p>
                         <img src="{{ coach.image.url }}" alt="{{profile}}'s picture" class="coach-img">
@@ -36,7 +37,7 @@
                             </span>
                             <span>Add/Update Information</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

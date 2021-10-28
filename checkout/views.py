@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.contrib import messages
 from django.conf import settings
 
@@ -51,7 +51,14 @@ def booking(request, course_id):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        booking_form = BookingForm()
+
+        profile = UserProfile.objects.get(user=request.user)
+
+        booking_form = BookingForm(initial={
+            'full_name': profile.full_name,
+            'email': profile.email,
+            'phone_number': profile.phone_number,
+        })
 
     template = 'checkout/booking.html'
     context = {
@@ -67,10 +74,23 @@ def booking(request, course_id):
 
 def booking_success(request, booking_reference):
 
-    # save_info = request.session.get('save_info')
-
+    save_info = request.session.get('save_info')
     booking_submission = get_object_or_404(Booking, 
                                            booking_reference=booking_reference)
+    profile = UserProfile.objects.get(user=request.user)
+    booking_submission.user_profile = profile
+    booking_submission.save()
+    
+    if save_info:
+        profile_data = {
+            'full_name': booking_submission.full_name,
+            'phone_number': booking_submission.phone_number,
+            'email': booking_submission.email,
+        }
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+
     messages.success(request,
                      f'Booking successfully processed! {booking_reference}')
 
