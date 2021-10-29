@@ -23,6 +23,31 @@
                         <a class="btn btn-success btn-custom mt-4" href="{% url 'all_articles' %}">Back to articles page</a>
                         {% if user.is_superuser %}
                             <a class="btn btn-primary mt-4" href="{% url 'edit_article' article.id %}">Edit article</a>
+                            <!--Delete Modal Button-->
+                            <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#deleteArticleModal">
+                                Delete article
+                            </button>
+                            <!--Delete Modal Button-->
+                            <div class="modal fade" id="deleteArticleModal" tabindex="-1" role="dialog" aria-labelledby="deleteArticleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteArticleModalLabel">Delete article?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete article "{{ article.title }}"?</p>
+                                            <p class="text-danger text-uppercase"><strong>Warning: This cannot be undone!!</strong></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
+                                            <a class="btn btn-danger" href="{% url 'delete_article' article.id %}">Delete article</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>

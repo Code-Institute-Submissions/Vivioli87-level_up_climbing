@@ -53,6 +53,7 @@ def article_detail(request, article_id):
 
 @login_required
 def add_article(request):
+    """ Add an article """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
@@ -80,6 +81,7 @@ def add_article(request):
 
 @login_required
 def edit_article(request, article_id):
+    """ Edit an article """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
@@ -105,3 +107,16 @@ def edit_article(request, article_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_article(request, article_id):
+    """" Delete an article """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only the website owner can do that.')
+        return redirect(reverse('home'))
+
+    article = get_object_or_404(Article, pk=article_id)
+    article.delete()
+    messages.success(request, 'Article deleted!')
+    return redirect(reverse('all_articles'))

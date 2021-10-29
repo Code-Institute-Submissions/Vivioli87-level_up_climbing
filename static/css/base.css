@@ -242,7 +242,7 @@ label {
     height: 200px;
 }
 
-.article-card-header, .article-detail-card > .card-header, .comments-card > .card-header {
+.article-card-header, .article-detail-card > .card-header, .comments-card > .card-header, .modal-header {
     background-color: #d5f2e4;
     color: #127245;
     letter-spacing: 2px;
