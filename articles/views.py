@@ -47,6 +47,7 @@ def article_detail(request, article_id):
         'form': form,
         'article': article,
         'comments': comments,
+        'profile': profile,
     }
 
     return render(request, template, context)
@@ -120,3 +121,53 @@ def delete_article(request, article_id):
     article.delete()
     messages.success(request, 'Article deleted!')
     return redirect(reverse('all_articles'))
+
+
+@login_required
+def edit_comment(request, comment_id):
+    """ Edit a comment """
+
+    comment = get_object_or_404(ArticleComments, pk=comment_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    article = comment.article
+
+    if profile != comment.user_profile:
+        messages.error(request, 'Sorry, you do not have permissions to edit this comment.')
+        return redirect(reverse('all_articles'))
+
+    if request.method == 'POST':
+        form = ArticleCommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated article!')
+            return redirect(reverse('article_detail', args=[article.id]))
+        else:
+            messages.error(request,
+                           ('Failed to edit comment.'
+                            'Please ensure the form is valid.'))
+    else:
+        form = ArticleCommentForm(instance=comment)
+
+    template = 'articles/edit_comment.html'
+    context = {
+        'form': form,
+        'comment': comment
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """" Delete comment """
+    comment = get_object_or_404(ArticleComments, pk=comment_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    article = comment.article
+
+    if profile != comment.user_profile:
+        messages.error(request, 'Sorry, you do not have permissions to delete this comment.')
+        return redirect(reverse('article_detail', args=[article.id]))
+
+    comment.delete()
+    messages.success(request, 'Comment deleted!')
+    return redirect(reverse('article_detail', args=[article.id]))
