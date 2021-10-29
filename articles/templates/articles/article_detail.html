@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="transparent-overlay"></div>
+<div class="overlay"></div>
 
 <div class="container-fluid">
     <div class="row">
@@ -17,6 +17,50 @@
                     <p class="card-text"><small class="bold-green-text">Created date: {{ article.created_date }}</small></p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4 class="text-over-image text-center my-3 pb-4">Comments</h4>
+            {% if comments %}
+                {% for comment in comments %}
+                    <div class="card comments-card">
+                        <div class="card-header bold-green-text">Comment by: {{ comment.user_profile }}</sm></div>
+                        <div class="card-body">
+                        <h5 class="card-title bold-green-text">{{ comment.title }}</h5>
+                        <p class="card-text">{{ comment.comment|linebreaks }}</p>
+                        <p class="card-text bold-green-text"><small>added: {{ comment.created_date }}</small></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card comments-card text-center">
+                    <div class="card-body">
+                        <p class="bold-green-text card-text">There are no comments for this article currently!</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="comments-card">
+                <div class="card-header text-center">Add a comment for this article: "{{ article }}"
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'article_detail' article.id %}" enctype="multipart/form-data" class="form mb-2" >
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {{ field | as_crispy_field }}
+                        {% endfor %}
+                        <div class="text-center pt-4">
+                            <a class="btn btn-outline-dark back-button" href="#">Cancel</a>
+                            <button class="btn btn-success btn-custom" type="submit">Add Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

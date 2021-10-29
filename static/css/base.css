@@ -237,7 +237,7 @@ label {
     box-shadow: 5px 5px 5px #888888;
 }
 
-.article-card-header, .article-detail-card > .card-header {
+.article-card-header, .article-detail-card > .card-header, .comments-card > .card-header {
     background-color: #d5f2e4;
     color: #127245;
     letter-spacing: 2px;
@@ -251,7 +251,7 @@ label {
     font-size: 14px;
 }
 
-.article-detail-card {
+.article-detail-card, .comments-card {
     background-color: #fff;
     letter-spacing: 2px;
     max-width: 90%;
