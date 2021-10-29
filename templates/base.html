@@ -10,6 +10,13 @@
         {% endblock %}
 
         {% block extra_meta %}
+            <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
+            <link rel="manifest" href="/media/favicon/site.webmanifest">
+            <link rel="mask-icon" href="/media/favicon/safari-pinned-tab.svg" color="#5bbad5">
+            <meta name="msapplication-TileColor" content="#da532c">
+            <meta name="theme-color" content="#ffffff">
         {% endblock %}
 
         {% block corecss %}
@@ -45,12 +52,17 @@
                 </div>
                 <div class="col-12 col-lg-8 my-auto py-1 py-lg-0">
                     <ul class="list-inline list-unstyled text-center float-end text-lg-right my-0">
-                        <li class="list-inline-item">
-                            <div class="text-center">
-                                <div><i class="fas fa-info-circle fa-lg"></i></div>
-                                <a href="{% url 'about' %}" class="nav-link my-0 py-0">
-                                    About
-                                </a>
+                        <li class="list-inline-item dropdown">
+                            <a class="nav-link" href="#" id="class-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="text-center">
+                                    <div><i class="fas fa-info-circle fa-lg"></i></div>
+                                    <p class="my-0">About</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border-0" aria-labelledby="class-options">
+                                <a href="{% url 'about' %}" class="dropdown-item">General Info</a>
+                                <a href="{% url 'all_venues' %}" class="dropdown-item text-dark">Venues</a> 
+                                <a href="" class="dropdown-item text-dark">Contact us</a>
                             </div>
                         </li>
                         <li class="list-inline-item">
