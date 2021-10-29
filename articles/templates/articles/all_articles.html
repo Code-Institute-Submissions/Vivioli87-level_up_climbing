@@ -17,7 +17,11 @@
                             </div>
                             <div class="row no-gutters">
                                 <div class="col-md-4">
-                                    <img src="{{ article.image.url }}" class="card-img article-card-img" alt="{{ article.title }}">
+                                    {% if product.image %}
+                                        <img src="{{ MEDIA_URL }}{{ article.image.url }}" class="card-img article-card-img" alt="{{ article.title }}">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}no-image-icon-23485.png" class="card-img article-card-img" alt="{{ article.title }}">
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body article-overview">

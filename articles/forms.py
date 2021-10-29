@@ -44,7 +44,6 @@ class ArticleCommentForm(forms.ModelForm):
             'comment': 'Comment',
         }
 
-        self.fields['title'].widget.attrs['autofocus'] = True
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder

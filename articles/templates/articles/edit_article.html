@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="transparent-overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card course-card">
+                <div class="card-header text-center">Edit article
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{% url 'edit_article' article.id %}" enctype="multipart/form-data" class="form mb-2" >
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {% if field.name != 'image' %}
+                                {{ field | as_crispy_field }}
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="text-center pt-4">
+                            <a class="btn btn-outline-dark" href="{% url 'all_articles' %}">Cancel</a>
+                            <button class="btn btn-success btn-custom" type="submit">Edit Article</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>           
+    </div>
+</div>
+{% endblock %}

@@ -11,12 +11,19 @@
                 <div class="card-header">
                     <h2 class="article-detail-title text-center mb-4">{{ article.title }}</h2>
                 </div>
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="d-none d-md-block">
+                {% if product.image %}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="d-none d-md-block">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}no-image-icon-23485.png" class="d-none d-md-block" alt="{{ article.title }}">
+                {% endif %}
                 <div class="card-body">
                     <p class="card-text">{{ article.content|linebreaks }}</p>
                     <p class="card-text"><small class="bold-green-text">Created date: {{ article.created_date }}</small></p>
                     <div class="text-center">
                         <a class="btn btn-success btn-custom mt-4" href="{% url 'all_articles' %}">Back to articles page</a>
+                        {% if user.is_superuser %}
+                            <a class="btn btn-primary mt-4" href="{% url 'edit_article' article.id %}">Edit article</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

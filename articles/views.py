@@ -76,3 +76,32 @@ def add_article(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_article(request, article_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        return redirect(reverse('home'))
+
+    article = get_object_or_404(Article, pk=article_id)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated article!')
+            return redirect(reverse('article_detail', args=[article.id]))
+        else:
+            messages.error(request,
+                           ('Failed to edit course.'
+                            'Please ensure the form is valid.'))
+    else:
+        form = ArticleForm(instance=article)
+
+    template = 'articles/edit_article.html'
+    context = {
+        'form': form,
+        'article': article
+    }
+
+    return render(request, template, context)
