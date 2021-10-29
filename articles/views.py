@@ -26,7 +26,8 @@ def article_detail(request, article_id):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = ArticleCommentForm(request.POST)
+        form = ArticleCommentForm(request.POST, initial={'article': article,
+                                                         'user_profile': profile})
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added article comment!')
