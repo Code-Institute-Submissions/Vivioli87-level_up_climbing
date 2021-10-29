@@ -11,8 +11,8 @@
                 <div class="card-header">
                     <h2 class="article-detail-title text-center mb-4">{{ article.title }}</h2>
                 </div>
-                {% if product.image %}
-                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="d-none d-md-block">
+                {% if article.image %}
+                    <img src="{{ MEDIA_URL }}{{ article.image }}" alt="{{ article.title }}" class="d-none d-md-block">
                 {% else %}
                     <img src="{{ MEDIA_URL }}no-image-icon-23485.png" class="d-none d-md-block" alt="{{ article.title }}">
                 {% endif %}
