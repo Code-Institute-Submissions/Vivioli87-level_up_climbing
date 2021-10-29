@@ -15,6 +15,9 @@
                 <div class="card-body">
                     <p class="card-text">{{ article.content|linebreaks }}</p>
                     <p class="card-text"><small class="bold-green-text">Created date: {{ article.created_date }}</small></p>
+                    <div class="text-center">
+                        <a class="btn btn-success btn-custom mt-4" href="{% url 'all_articles' %}">Back to articles page</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,7 +32,7 @@
                         <div class="card-body">
                         <h5 class="card-title bold-green-text">{{ comment.title }}</h5>
                         <p class="card-text">{{ comment.comment|linebreaks }}</p>
-                        <p class="card-text bold-green-text"><small>added: {{ comment.created_date }}</small></p>
+                        <p class="card-text bold-green-text"><small>Added: {{ comment.created_date }}</small></p>
                         </div>
                     </div>
                 {% endfor %}
@@ -55,7 +58,6 @@
                                 {{ field | as_crispy_field }}
                             {% endfor %}
                             <div class="text-center pt-4">
-                                <a class="btn btn-outline-dark back-button" href="#">Cancel</a>
                                 <button class="btn btn-success btn-custom" type="submit">Add Comment</button>
                             </div>
                         </form>

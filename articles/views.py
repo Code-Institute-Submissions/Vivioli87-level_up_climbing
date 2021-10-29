@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Article, ArticleComments
 from profiles.models import UserProfile
-from .forms import ArticleCommentForm
+from .forms import ArticleForm, ArticleCommentForm
 
 
 def all_articles(request):
@@ -47,6 +47,32 @@ def article_detail(request, article_id):
         'form': form,
         'article': article,
         'comments': comments,
+    }
+
+    return render(request, template, context)
+
+@login_required
+def add_article(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        return redirect(reverse('home'))
+    
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            article = form.save()
+            messages.success(request, 'Successfully added article!')
+            return redirect(reverse('article_detail', args=[article.id]))
+        else:
+            messages.error(request,
+                           ('Failed to add course. '
+                            'Please ensure the form is valid.'))
+    else:
+        form = ArticleForm()
+
+    template = 'articles/add_article.html'
+    context = {
+        'form': form,
     }
 
     return render(request, template, context)

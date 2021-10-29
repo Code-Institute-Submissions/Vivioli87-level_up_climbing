@@ -12,5 +12,5 @@ class ArticleCommentsAdmin(admin.ModelAdmin):
 
     fields = ('article', 'user_profile', 'title', 'comment')
 
-
+admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleComments, ArticleCommentsAdmin)

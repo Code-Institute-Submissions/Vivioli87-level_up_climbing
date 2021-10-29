@@ -237,6 +237,11 @@ label {
     box-shadow: 5px 5px 5px #888888;
 }
 
+.card-img.article-card-img {
+    overflow: hidden;
+    height: 200px;
+}
+
 .article-card-header, .article-detail-card > .card-header, .comments-card > .card-header {
     background-color: #d5f2e4;
     color: #127245;
