@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-over-image text-center mb-4">Enquiries</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h4 class="text-center text-uppercase bold-green-text">General enquiries</h4>
+            {% for contact in general_contacts %}
+                <div class="card course-card mt-4">
+                    <div class="card-body">
+                        <p class="card-text"><span class="bold-green-text">Name:</span> {{ contact.full_name }}</p>
+                        <p class="card-text"><span class="bold-green-text">Email:</span> {{ contact.email }}</p>
+                        <p class="card-text"><span class="bold-green-text">Phone:</span> {{ contact.phone_number }}</p>
+                        <p class="card-text"><span class="bold-green-text">Message:</span> {{ contact.message }}</p>
+                        <p class="card-text"><span class="bold-green-text">Date sent:</span> {{ contact.date_sent }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-lg-6">
+            <h4 class="text-center text-uppercase bold-green-text">1:1 Coaching enquiries</h4>
+                
+        </div> 
+    </div>
+    
+</div>
+{% endblock %}

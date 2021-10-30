@@ -33,6 +33,7 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'add_course' %}" class="dropdown-item">Class Management</a>
                         <a href="{% url 'add_article' %}" class="dropdown-item">Article Management</a>
+                        <a href="{% url 'contact_manager' %}" class="dropdown-item">Enquiry Management</a>
                     {% endif %}
                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
                 {% else %}

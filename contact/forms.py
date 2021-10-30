@@ -5,7 +5,7 @@ from .models import GeneralContact
 class ContactForm(forms.ModelForm):
     class Meta:
         model = GeneralContact
-        fields = '__all__'
+        exclude = ('date_sent',)
     
     def __init__(self, *args, **kwargs):
 
