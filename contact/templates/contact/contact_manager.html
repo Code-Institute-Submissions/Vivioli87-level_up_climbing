@@ -16,23 +16,29 @@
     <div class="row">
         <div class="col-12 col-lg-6">
             <h4 class="text-center text-uppercase bold-green-text">General enquiries</h4>
-            {% for contact in general_contacts %}
+            {% if general_contacts %}
+                {% for contact in general_contacts %}
+                    <div class="card course-card mt-4">
+                        <div class="card-body">
+                            <p class="card-text"><span class="bold-green-text">Name:</span> {{ contact.full_name }}</p>
+                            <p class="card-text"><span class="bold-green-text">Message:</span> {{ contact.message }}</p>
+                            <p class="card-text"><span class="bold-green-text">Date sent:</span> {{ contact.date_sent }}</p>
+                            <a class="btn btn-success btn-custom" href="{% url 'contact_detail' contact.id %}">View enquiry details</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
                 <div class="card course-card mt-4">
                     <div class="card-body">
-                        <p class="card-text"><span class="bold-green-text">Name:</span> {{ contact.full_name }}</p>
-                        <p class="card-text"><span class="bold-green-text">Email:</span> {{ contact.email }}</p>
-                        <p class="card-text"><span class="bold-green-text">Phone:</span> {{ contact.phone_number }}</p>
-                        <p class="card-text"><span class="bold-green-text">Message:</span> {{ contact.message }}</p>
-                        <p class="card-text"><span class="bold-green-text">Date sent:</span> {{ contact.date_sent }}</p>
+                        <p class="card-text bold-green-text text-center">You have no outstanding general enquiries!</p>
                     </div>
                 </div>
-            {% endfor %}
+            {% endif %}
         </div>
         <div class="col-12 col-lg-6">
             <h4 class="text-center text-uppercase bold-green-text">1:1 Coaching enquiries</h4>
                 
         </div> 
-    </div>
-    
+    </div> 
 </div>
 {% endblock %}

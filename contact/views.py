@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail, BadHeaderError
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
-from .forms import ContactForm
+from .forms import ContactForm, CompleteContactForm
 from .models import GeneralContact
 
 def contact_form(request):
@@ -12,6 +11,10 @@ def contact_form(request):
             form.save()
             messages.success(request, 'Successfully submitted enquiry!')
             return redirect('home')
+        else:
+            messages.error(request,
+                           ('Failed to submit enquiry. '
+                            'Please ensure the form is valid.'))
 
     else:
         form = ContactForm()
@@ -26,12 +29,39 @@ def contact_form(request):
 
 def contact_manager(request):
 
-    general_contacts = GeneralContact.objects.all().order_by('-date_sent')
-
+    general_contacts = GeneralContact.objects.filter(is_complete=False).order_by('-date_sent')
+    
     template = 'contact/contact_manager.html'
 
     context = {
         'general_contacts': general_contacts,
+    }
+
+    return render(request, template, context)
+
+
+def contact_detail(request, contact_id):
+    contact = get_object_or_404(GeneralContact, pk=contact_id)
+
+    if request.method == 'POST':
+        form = CompleteContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully completed enquiry!')
+            return redirect(reverse('contact_manager'))
+        else:
+            messages.error(request,
+                           ('Failed to marke enquiry as complete. '
+                            'Please ensure the form is valid.'))
+
+    else:
+        form = CompleteContactForm(instance=contact)
+
+    template = 'contact/contact_detail.html'
+
+    context = {
+        'form': form,
+        'contact': contact,
     }
 
     return render(request, template, context)

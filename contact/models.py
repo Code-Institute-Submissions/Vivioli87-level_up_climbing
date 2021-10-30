@@ -10,6 +10,7 @@ class GeneralContact(models.Model):
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     message = models.TextField(null=False, blank=False)
     date_sent = models.DateTimeField(auto_now_add=True)
+    is_complete = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return f'General enquiry from {self.full_name}'
@@ -25,6 +26,7 @@ class PrivateCoachingContact(models.Model):
                               blank=True, null=True)
     message = models.TextField(null=False, blank=False)
     date_sent = models.DateTimeField(auto_now_add=True)
+    is_complete = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return f'Private Coaching enquiry from {self.full_name}'
