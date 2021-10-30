@@ -278,6 +278,7 @@ label {
 .card-img.article-card-img {
     overflow: hidden;
     height: 200px;
+    object-fit: cover;
 }
 
 .article-card-header, .article-detail-card > .card-header, .comments-card > .card-header, .modal-header {

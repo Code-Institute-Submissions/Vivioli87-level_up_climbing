@@ -25,13 +25,17 @@
                                 {% endif %}
                             {% endfor %}
                         </ul>
-                    <p class="card-text"><span class="bold-green-text">Course start date & time:</span> {{ course.start_date }}</p>
-                    <p class="card-text">The course runs for 4 weeks. Classes will be on the same week day and time as the first lesson.</p>
+                    <p class="card-text"><span class="bold-green-text">Course start date & time:</span> {{ course.start_date|date:"l" }} {{ course.start_date }}</p>
+                    {% if course.lesson_number > 1 %}
+                        <p class="card-text"> {{ course.lesson_number}} lessons over {{course.lesson_number}} weeks. Repeats every {{ course.start_date|date:"l" }} at {{ course.start_date|date:"h:i a" }}</p>
+                    {% else %}
+                        <p class="card-text">This is a one off session</p>
+                    {% endif %}
                     <p class="card-text"><span class="bold-green-text">Price:</span> £{{ course.course_type.price }}</p>
                     <p class="card-text"><span class="bold-green-text">Capacity:</span> {{ capacity }}</p>
                     <p class="card-text"><span class="bold-green-text">Available places:</span> {{ available_course_places }}</p>
                     <p class="card-text"><span class="bold-green-text">Venue:</span> {{ course.venue }}</p>
-                    <p class="card-text"><span class="bold-green-text">Coach:</span> {{ course.coach.full_name }}</p>
+                    <p class="card-text"><span class="bold-green-text">Coach:</span> {{ course.coach }}</p>
                         {% if course.course_complete %}
                             <p class="card-text text-danger"> We're sorry but this course has finished!</p>
                                 {% if user.is_superuser %}
