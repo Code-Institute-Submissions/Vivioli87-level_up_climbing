@@ -256,6 +256,16 @@ label {
     text-decoration: underline;
 }
 
+.nav-item.filter-button {
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px #888888;
+}
+
+.nav-item.filter-button > a {
+    color: #fff;
+}
+
+
 /* Articles*/
 
 .card.article-card {

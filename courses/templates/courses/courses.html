@@ -7,8 +7,35 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col text-center">
+        <div class="col-12 text-center">
             <h2 class="text-over-image mb-4">Courses</h2>
+        </div>
+        <div class="col-6 text-center">
+            <ul class="nav nav-tabs">
+                <li class="nav-item dropdown mb-4 filter-button">
+                    <a class="nav-link dropdown-toggle btn btn-success btn-custom" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filter by Course Level</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'courses' %}">All Levels</a>
+                        <a class="dropdown-item" href="{% url 'courses' %}?level=Beginner">Beginner</a>
+                        <a class="dropdown-item" href="{% url 'courses' %}?level=Improver">Improver</a>
+                        <a class="dropdown-item" href="{% url 'courses' %}?level=Intermediate">Intermediate</a>
+                        <a class="dropdown-item" href="{% url 'courses' %}?level=Advanced">Advanced</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% if levels %}
+                {% for level in levels %}
+                    <div class="card course-card text-center mb-4">
+                        <div class="card-header"style="border-bottom: none;"">
+                            Showing courses for Level: {{ level }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% for course in courses %}
                 <div class="card course-card">
                     <div class="card-header">

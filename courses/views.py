@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
-from .models import Course, CourseLesson
+from .models import Course, CourseLesson, Level
 from checkout.models import Booking
 from profiles.models import UserProfile
 
@@ -12,21 +12,41 @@ from .forms import CourseForm
 
 
 def all_courses(request):
+    """ A view to bring back all active courses, paginated. Include filter on course level"""
 
     courses = Course.objects.filter(course_complete=False).order_by('start_date')
+    
+    levels = None
 
-    page = request.GET.get('page', 1)
-    paginator = Paginator(courses, 3)
+    if request.GET:
+        if 'level' in request.GET:
+            levels = request.GET['level'].split(',')
+            courses = courses.filter(level__name__in=levels)
+            levels = Level.objects.filter(name__in=levels)
+        
+            page = request.GET.get('page', 1)
+            paginator = Paginator(courses, 3)
 
-    try:
-        courses = paginator.page(page)
-    except PageNotAnInteger:
-        courses = paginator.page(1)
-    except EmptyPage:
-        courses = paginator.page(paginator.num_pages)
+            try:
+                courses = paginator.page(page)
+            except PageNotAnInteger:
+                courses = paginator.page(1)
+            except EmptyPage:
+                courses = paginator.page(paginator.num_pages)   
+    else:
+        page = request.GET.get('page', 1)
+        paginator = Paginator(courses, 3)
+
+        try:
+            courses = paginator.page(page)
+        except PageNotAnInteger:
+            courses = paginator.page(1)
+        except EmptyPage:
+            courses = paginator.page(paginator.num_pages)
 
     context = {
         'courses': courses,
+        'levels': levels,
     }
 
     return render(request, 'courses/courses.html', context)
