@@ -35,48 +35,43 @@
                         {% if course.course_complete %}
                             <p class="card-text text-danger"> We're sorry but this course has finished!</p>
                                 {% if user.is_superuser %}
-                                    <p class="card-text text-danger">Superuser: if this was marked as finished in error, please update on this link  
-                                        <a href="{% url 'edit_course' course.id %}" class="custom-links">Edit course</a>
-                                    </p>
-                                    
+                                    <p class="card-text text-danger">Superuser: if this was marked as finished in error, please update below </p>
+                                    <a href="{% url 'edit_course' course.id %}" class="btn btn-success btn-custom">Edit course</a>
                                 {% endif %}
-                        {% endif %}
-
-                    {% if available_course_places == 0 %}
-                        <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
-                        <a href="{% url 'courses' %}" class="btn btn-outline-dark">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Back to courses</span>
-                        </a>
-                    {% elif course.course_complete %}
-                        <a href="{% url 'courses' %}" class="btn btn-outline-dark">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Back to courses</span>
-                        </a>
-                    {% else %}
-                        {% if user_booked %}
-                            <p class="card-text text-danger text-uppercase"> You already have a booking for this course, please check your profile page for information!</p>
+                                <a href="{% url 'courses' %}" class="btn btn-outline-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span>Back to courses</span>
+                                </a>
+                        {% elif available_course_places == 0 %}
+                            <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
                             <a href="{% url 'courses' %}" class="btn btn-outline-dark">
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
                                 <span>Back to courses</span>
                             </a>
-                            <a href="{% url 'booking' course.id %}" class="btn btn-success btn-custom disabled">Book Course</a>
                         {% else %}
-                            <a href="{% url 'courses'  %}" class="btn btn-outline-dark">
-                                <span class="icon">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
-                                <span>Back to courses</span>
-                            </a>
-                            <a href="{% url 'booking' course.id %}" class="btn btn-success btn-custom">Book Course</a>
-                        {% endif %}    
-                    {% endif %}
+                            {% if user_booked %}
+                                <p class="card-text text-danger text-uppercase"> You already have a booking for this course, please check your profile page for information!</p>
+                                <a href="{% url 'courses' %}" class="btn btn-outline-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span>Back to courses</span>
+                                </a>
+                                <a href="{% url 'booking' course.id %}" class="btn btn-success btn-custom disabled">Book Course</a>
+                            {% else %}
+                                <a href="{% url 'courses'  %}" class="btn btn-outline-dark">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span>Back to courses</span>
+                                </a>
+                                <a href="{% url 'booking' course.id %}" class="btn btn-success btn-custom">Book Course</a>
+                            {% endif %}    
+                        {% endif %}
                 </div>
             </div>
         </div>
