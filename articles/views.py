@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -9,7 +10,19 @@ from .forms import ArticleForm, ArticleCommentForm
 
 def all_articles(request):
 
-    articles = Article.objects.all()
+    articles = Article.objects.all().order_by('-created_date')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articles, 6)
+
+    try:
+        articles = paginator.page(page)
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages)
+
+
 
     template = 'articles/all_articles.html'
     context = {
@@ -24,6 +37,16 @@ def article_detail(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     comments = ArticleComments.objects.filter(article=article).order_by('-created_date')
     profile = get_object_or_404(UserProfile, user=request.user)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(comments, 4)
+
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments = paginator.page(paginator.num_pages)
 
     if request.method == 'POST':
         form = ArticleCommentForm(request.POST, initial={'article': article,

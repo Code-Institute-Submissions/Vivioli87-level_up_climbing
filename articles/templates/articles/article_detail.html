@@ -54,60 +54,89 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <h4 class="text-over-image text-center my-3 pb-4">Comments</h4>
-            {% if comments %}
-                {% for comment in comments %}
-                    <div class="card comments-card">
-                        <div class="card-header bold-green-text">Comment by: {{ comment.user_profile }}</sm></div>
-                        <div class="card-body">
-                            <h5 class="card-title bold-green-text">{{ comment.title }}</h5>
-                            <p class="card-text">{{ comment.comment|linebreaks }}</p>
-                            <p class="card-text bold-green-text"><small>Added: {{ comment.created_date }}</small></p>
-                             <!--Edit and Delete comments - user only -->
-                            {% if profile == comment.user_profile %}
-                                <a class="btn btn-primary mt-4" href="{% url 'edit_comment' comment.id %}">Edit comment</a>
-                                <!--Delete Modal Button-->
-                                <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#deleteCommentModal{{ forloop.counter }}">
-                                    Delete comment
-                                </button>
-                                <!--Delete Modal -->
-                                <div class="modal fade" id="deleteCommentModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel{{ forloop.counter }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteCommentModalLabel{{ forloop.counter }}">Delete comment?</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete this comment "{{ comment.title }}"?</p>
-                                                <p>{{ comment.comment|linebreaks }}</p>
-                                                <p class="text-danger text-uppercase"><strong>Warning: This cannot be undone!!</strong></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" href="{% url 'delete_comment' comment.id %}">Delete comment</a>
+    {% if comments %}
+        <div class="row">
+            <div class="col">
+                <h4 class="text-over-image text-center my-3 pb-4">Comments</h4>
+                    {% for comment in comments %}
+                        <div class="card comments-card">
+                            <div class="card-header bold-green-text">Comment by: {{ comment.user_profile }}</sm></div>
+                            <div class="card-body">
+                                <h5 class="card-title bold-green-text">{{ comment.title }}</h5>
+                                <p class="card-text">{{ comment.comment|linebreaks }}</p>
+                                <p class="card-text bold-green-text"><small>Added: {{ comment.created_date }}</small></p>
+                                <!--Edit and Delete comments - user only -->
+                                {% if profile == comment.user_profile %}
+                                    <a class="btn btn-primary mt-4" href="{% url 'edit_comment' comment.id %}">Edit comment</a>
+                                    <!--Delete Modal Button-->
+                                    <button type="button" class="btn btn-danger mt-4" data-toggle="modal" data-target="#deleteCommentModal{{ forloop.counter }}">
+                                        Delete comment
+                                    </button>
+                                    <!--Delete Modal -->
+                                    <div class="modal fade" id="deleteCommentModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="deleteCommentModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteCommentModalLabel{{ forloop.counter }}">Delete comment?</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this comment "{{ comment.title }}"?</p>
+                                                    <p>{{ comment.comment|linebreaks }}</p>
+                                                    <p class="text-danger text-uppercase"><strong>Warning: This cannot be undone!!</strong></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-danger" href="{% url 'delete_comment' comment.id %}">Delete comment</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            {% endif %}
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            {% else %}
+                    {% endfor %}
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                {% if comments.has_other_pages %}
+                    <ul class="pagination">
+                        {% if comments.has_previous %}
+                            <li><a href="?page={{ comments.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% endif %}
+                        {% for i in comments.paginator.page_range %}
+                            {% if comments.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% else %}
+                                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if comments.has_next %}
+                            <li><a href="?page={{ comments.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>             
+    {% else %}
+        <div class="row">
+            <div class="col">      
                 <div class="card comments-card text-center">
                     <div class="card-body">
                         <p class="bold-green-text card-text">There are no comments for this article currently!</p>
                     </div>
                 </div>
-        {% endif %}
+            </div>
         </div>
-    </div>
+    {% endif %}
     {% if user.is_authenticated %}
         <div class="row">
             <div class="col">
