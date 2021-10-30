@@ -32,6 +32,16 @@
                     <p class="card-text"><span class="bold-green-text">Available places:</span> {{ available_course_places }}</p>
                     <p class="card-text"><span class="bold-green-text">Venue:</span> {{ course.venue }}</p>
                     <p class="card-text"><span class="bold-green-text">Coach:</span> {{ course.coach.full_name }}</p>
+                        {% if course.course_complete %}
+                            <p class="card-text bold-green-text">This course has finished!</p>
+                                {% if user.is_superuser %}
+                                    <p class="card-text text-danger">if this was marked as finished in error, please update here  
+                                        <a href="{% url 'edit_course' course.id %}" class="custom-links">Edit course</a>
+                                    </p>
+                                    
+                                {% endif %}
+                        {% endif %}
+
                     {% if available_course_places == 0 %}
                         <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
                         <a href="{% url 'courses' %}" class="btn btn-outline-dark">

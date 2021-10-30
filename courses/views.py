@@ -13,10 +13,10 @@ from .forms import CourseForm
 
 def all_courses(request):
 
-    courses = Course.objects.all().order_by('start_date')
+    courses = Course.objects.filter(course_complete=False).order_by('start_date')
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(courses, 4)
+    paginator = Paginator(courses, 3)
 
     try:
         courses = paginator.page(page)
