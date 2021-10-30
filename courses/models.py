@@ -1,6 +1,6 @@
 from django.db import models
 from venues.models import Venue
-from profiles.models import UserProfile
+from profiles.models import UserProfile, Coach
 
 
 class Level(models.Model):
@@ -52,7 +52,8 @@ class Course(models.Model):
                                     on_delete=models.SET_NULL)
     start_date = models.DateTimeField(auto_now_add=False)
     venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.SET_NULL)
-    coach = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.SET_NULL)
+    lesson_number = models.IntegerField(null=False, blank=False, default=1)
+    coach = models.ForeignKey(Coach, null=True, blank=True, on_delete=models.SET_NULL)
     course_complete = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):

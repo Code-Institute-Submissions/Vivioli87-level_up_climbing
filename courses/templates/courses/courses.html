@@ -44,7 +44,11 @@
                     <div class="card-body">
                     <p class="card-text">{{ course.course_type.description }}</p>
                     <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
-                    <p class="card-text">4 Lessons over 4 weeks. Same week day and time as the start date specified.</p>
+                    {% if course.lesson_number > 1 %}
+                        <p class="card-text"> {{ course.lesson_number}} lessons over {{course.lesson_number}} weeks. Repeats every {{ course.start_date|date:"l" }} at {{ course.start_date|date:"h:i a" }}</p>
+                    {% else %}
+                        <p class="card-text">This is a one off session</p>
+                    {% endif %}
                     <p class="card-text">Lessons are 90 minutes long and include a warm up and cool down.</p>
                     {% if request.user.is_authenticated %}
                         <a href="{% url 'course_detail' course.id %}" class="btn btn-success btn-custom">More Details / Book Course</a>
