@@ -33,9 +33,9 @@
                     <p class="card-text"><span class="bold-green-text">Venue:</span> {{ course.venue }}</p>
                     <p class="card-text"><span class="bold-green-text">Coach:</span> {{ course.coach.full_name }}</p>
                         {% if course.course_complete %}
-                            <p class="card-text bold-green-text">This course has finished!</p>
+                            <p class="card-text text-danger"> We're sorry but this course has finished!</p>
                                 {% if user.is_superuser %}
-                                    <p class="card-text text-danger">if this was marked as finished in error, please update here  
+                                    <p class="card-text text-danger">Superuser: if this was marked as finished in error, please update on this link  
                                         <a href="{% url 'edit_course' course.id %}" class="custom-links">Edit course</a>
                                     </p>
                                     
@@ -44,6 +44,13 @@
 
                     {% if available_course_places == 0 %}
                         <p class="card-text text-danger"> We're sorry but this class is fully booked!</p>
+                        <a href="{% url 'courses' %}" class="btn btn-outline-dark">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span>Back to courses</span>
+                        </a>
+                    {% elif course.course_complete %}
                         <a href="{% url 'courses' %}" class="btn btn-outline-dark">
                             <span class="icon">
                                 <i class="fas fa-chevron-left"></i>
