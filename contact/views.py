@@ -9,20 +9,8 @@ def contact_form(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = "Website Enquiry"
-            body = {
-                'full_name': form.cleaned_data['full_name'],
-                'email': form.cleaned_data['email'],
-                'phone_number': form.cleaned_data['phone_number'],
-                'message': form.cleaned_data['message'],
-            }
-            message = "\n".join(body.values())
-
-            try:
-                send_mail(subject, message, None, [''], fail_silently=False)
-                messages.success(request, 'Successfully sent enquiry!')
-            except BadHeaderError:
-                messages.error(request, 'Invalid header found')
+            form.save()
+            messages.success(request, 'Successfully submitted enquiry!')
             return redirect('home')
 
     else:
