@@ -12,7 +12,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">Review the information and contact the customer. Mark as complete when done!</p>
-                    <form method="POST" action="{% url 'contact_detail' contact.id %}" class="form mb-2" >
+                    <form method="POST" action="{% url 'coaching_contact_detail' contact.id %}" class="form mb-2" >
                         {% csrf_token %}
                         {% for field in form %}
                             {{ field | as_crispy_field }}

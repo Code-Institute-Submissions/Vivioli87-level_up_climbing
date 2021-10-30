@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="transparent-overlay"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card course-card">
+                <div class="card-header text-center">1:1 Coaching
+                </div>
+                <div class="card-body">
+                    <p class="card-text bold-green-text">To be able to assess your needs and fit in any new 1:1 coaching with schedules, we would need to contact you to arrange the sessions and discuss cost.</p>
+                    <p class="card-text bold-green-text">Prices start from £25 per hour session per person. Discounts may be available for block sessions or private group coaching (max of 3 people). Prices do not include shoe hire or entry to the venue.</p>
+                    <p class="card-text bold-green-text">Please fill out as much information as possible below, including areas you would like to focus coaching on, preferred times or other venues you can attend.</p>
+                    <form method="POST" action="{% url 'coaching_contact_form' %}" class="form mb-2" >
+                        {% csrf_token %}
+                        {% for field in form %}
+                            {{ field | as_crispy_field }}
+                        {% endfor %}
+                        <div class="text-center pt-4">
+                            <a class="btn btn-outline-dark" href="{% url 'home' %}">Cancel</a>
+                            <button class="btn btn-success btn-custom" type="submit">Send enquiry</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>           
+    </div>
+</div>
+{% endblock %}
