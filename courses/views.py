@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 from .models import Course, CourseLesson
@@ -12,12 +13,20 @@ from .forms import CourseForm
 
 def all_courses(request):
 
-    courses = Course.objects.all()
-    course_lessons = CourseLesson.objects.all()
+    courses = Course.objects.all().order_by('start_date')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(courses, 4)
+
+    try:
+        courses = paginator.page(page)
+    except PageNotAnInteger:
+        courses = paginator.page(1)
+    except EmptyPage:
+        courses = paginator.page(paginator.num_pages)
 
     context = {
         'courses': courses,
-        'course_lessons': course_lessons,
     }
 
     return render(request, 'courses/courses.html', context)
