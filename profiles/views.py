@@ -32,7 +32,7 @@ def profile(request):
         form = UserProfileForm(instance=profile)
         coach_form = CoachForm(instance=coach)
         course = Course.objects.all().order_by('start_date')
-        coaches_courses = Course.objects.filter(coach=profile).order_by('start_date')
+        coaches_courses = Course.objects.filter(coach=coach).order_by('start_date')
 
         template = 'profiles/coach_profile.html'
         context = {
