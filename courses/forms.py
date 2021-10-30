@@ -15,4 +15,5 @@ class CourseForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['venue'] = forms.ModelChoiceField(queryset=Venue.objects.all())
         self.fields['coach'] = forms.ModelChoiceField(queryset=UserProfile.objects.filter(is_coach=True))
+        self.fields['course_complete'] = forms.BooleanField(required=False, initial=False, label='Mark as complete?')
         self.fields['start_date'] = forms.DateTimeField()

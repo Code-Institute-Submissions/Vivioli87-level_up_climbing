@@ -53,6 +53,7 @@ class Course(models.Model):
     start_date = models.DateTimeField(auto_now_add=False)
     venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.SET_NULL)
     coach = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.SET_NULL)
+    course_complete = models.BooleanField(null=False, blank=False, default=False)
 
     def __str__(self):
         return self.name

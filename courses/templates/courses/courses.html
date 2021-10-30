@@ -10,34 +10,36 @@
         <div class="col text-center">
             <h2 class="text-over-image mb-4">Courses</h2>
             {% for course in courses %}
-                <div class="card course-card">
-                    <div class="card-header">
-                        {{ course.level }} - {{ course.name }}
-                    </div>
-                    <div class="card-body">
-                    <p class="card-text">{{ course.course_type.description }}</p>
-                    <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
-                    <p class="card-text">4 Lessons over 4 weeks. Same week day and time as the start date specified.</p>
-                    <p class="card-text">Lessons are 90 minutes long and include a warm up and cool down.</p>
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'course_detail' course.id %}" class="btn btn-success btn-custom">More Details / Book Course</a>
-                        {% if request.user.is_superuser %}
-                            <a href="{% url 'edit_course' course.id %}" class="btn btn-primary">Edit course</a>
+                {% if not course.course_complete %}
+                    <div class="card course-card">
+                        <div class="card-header">
+                            {{ course.level }} - {{ course.name }}
+                        </div>
+                        <div class="card-body">
+                        <p class="card-text">{{ course.course_type.description }}</p>
+                        <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
+                        <p class="card-text">4 Lessons over 4 weeks. Same week day and time as the start date specified.</p>
+                        <p class="card-text">Lessons are 90 minutes long and include a warm up and cool down.</p>
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'course_detail' course.id %}" class="btn btn-success btn-custom">More Details / Book Course</a>
+                            {% if request.user.is_superuser %}
+                                <a href="{% url 'edit_course' course.id %}" class="btn btn-primary">Edit course</a>
+                            {% endif %}
+                        {% else %}
+                            <p class="card-text text-danger"><strong>You must be logged in to book a course.</strong></p> 
+                            <p class="card-text custom-green-text"><strong>Havent got an account? Its free and easy to sign up!</strong></p>
+                            <a href="#" class="btn btn-outline-dark back-button">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span>Back</span>
+                            </a>
+                            <a href="{% url 'account_signup' %}" class="btn btn-success btn-custom">Sign Up</a>
+                            <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
                         {% endif %}
-                    {% else %}
-                        <p class="card-text text-danger"><strong>You must be logged in to book a course.</strong></p> 
-                        <p class="card-text custom-green-text"><strong>Havent got an account? Its free and easy to sign up!</strong></p>
-                        <a href="#" class="btn btn-outline-dark back-button">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span>Back</span>
-                        </a>
-                        <a href="{% url 'account_signup' %}" class="btn btn-success btn-custom">Sign Up</a>
-                        <a href="{% url 'account_login' %}" class="btn btn-primary">Log In</a>
-                    {% endif %}
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             {% endfor %}
     </div>
 </div>

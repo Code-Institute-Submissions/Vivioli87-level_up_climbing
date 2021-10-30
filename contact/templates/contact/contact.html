@@ -11,8 +11,8 @@
                 <div class="card-header text-center">Contact us
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Please fill out as much information as possible, someone will come back to you as soon as they can!</p>
-                    <p class="card-text">If you're enquiry is about 1:1 coaching, please contact us through this form instead <a href="#" class="custom-links">1:1 Coaching enquiry form</a></p>
+                    <p class="card-text bold-green-text">Please fill out as much information as possible, someone will come back to you as soon as they can!</p>
+                    <p class="card-text">*If you're enquiry is about 1:1 coaching, please contact us through this form instead <a href="{% url 'coaching_contact_form' %}" class="custom-links">1:1 Coaching enquiry form</a></p>
                     <form method="POST" action="{% url 'contact' %}" class="form mb-2" >
                         {% csrf_token %}
                         {% for field in form %}
