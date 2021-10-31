@@ -99,3 +99,8 @@
     </div> 
 </div>
 {% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script src="{% static 'js/backbutton.js' %}"></script>
+{% endblock %}
