@@ -96,6 +96,12 @@ li {
     text-shadow: 2px 2px 4px #0c3d26;
 }
 
+.log-in-button{
+    background-color: #fff;
+    color: #10bc6c;
+    text-shadow: 2px 2px 4px #0c3d26;
+}
+
 .container-over-image h1, .text-over-image {
     text-shadow: 4px 4px 4px #fff;
     font-size: 50px;
