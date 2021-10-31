@@ -8,7 +8,6 @@ from courses.models import Course
 from .forms import UserProfileForm, CoachForm
 
 
-
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -23,12 +22,13 @@ def profile(request):
                 form.save()
                 messages.success(request, 'Profile updated successfully')
 
-        if request.method == 'POST' and 'coach-info' in request.POST:   
+        if request.method == 'POST' and 'coach-info' in request.POST:
             coach_form = CoachForm(request.POST, request.FILES, instance=coach)
             if coach_form.is_valid():
                 coach_form.save()
-                messages.success(request, 'Coach information updated successfully')
-        
+                messages.success(request,
+                                 'Coach information updated successfully')
+
         form = UserProfileForm(instance=profile)
         coach_form = CoachForm(instance=coach)
         courses = Course.objects.all().order_by('start_date')

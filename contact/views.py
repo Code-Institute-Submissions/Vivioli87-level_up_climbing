@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 
-from .forms import ContactForm, CompleteContactForm, PrivateCoachingForm, CompletePrivateCoachingForm
+from .forms import (
+                    ContactForm,
+                    CompleteContactForm,
+                    PrivateCoachingForm,
+                    CompletePrivateCoachingForm
+                    )
 from .models import GeneralContact, PrivateCoachingContact
 
 
@@ -33,7 +38,8 @@ def coaching_contact_form(request):
         form = PrivateCoachingForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully submitted 1:1 coaching enquiry!')
+            messages.success(request, 'Successfully submitted'
+                                      '1:1 coaching enquiry!')
             return redirect('home')
         else:
             messages.error(request,
@@ -55,7 +61,7 @@ def contact_manager(request):
 
     general_contacts = GeneralContact.objects.filter(is_complete=False).order_by('-date_sent')
     coaching_contacts = PrivateCoachingContact.objects.filter(is_complete=False).order_by('-date_sent')
-    
+
     template = 'contact/contact_manager.html'
 
     context = {
@@ -100,7 +106,8 @@ def coaching_contact_detail(request, contact_id):
         form = CompletePrivateCoachingForm(request.POST, instance=contact)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully completed coaching enquiry!')
+            messages.success(request, 'Successfully completed'
+                                      'coaching enquiry!')
             return redirect(reverse('contact_manager'))
         else:
             messages.error(request,

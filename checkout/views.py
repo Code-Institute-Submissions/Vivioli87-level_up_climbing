@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 
@@ -37,7 +37,7 @@ def booking(request, course_id):
 
         if booking_form.is_valid():
             booking_submission = booking_form.save()
-            
+
             return redirect(reverse('booking_success',
                                     args=[booking_submission.booking_reference]))
         else:
@@ -74,7 +74,7 @@ def booking(request, course_id):
 
 def booking_success(request, booking_reference):
 
-    booking_submission = get_object_or_404(Booking, 
+    booking_submission = get_object_or_404(Booking,
                                            booking_reference=booking_reference)
 
     messages.success(request,

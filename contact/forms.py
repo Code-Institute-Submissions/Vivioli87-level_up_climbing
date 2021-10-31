@@ -5,12 +5,11 @@ from venues.models import Venue
 from courses.models import Level
 
 
-
 class ContactForm(forms.ModelForm):
     class Meta:
         model = GeneralContact
         exclude = ('date_sent', 'is_complete')
-    
+
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
@@ -27,7 +26,6 @@ class ContactForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0'
             self.fields[field].label = False
-        
 
 
 class CompleteContactForm(forms.ModelForm):
@@ -38,8 +36,10 @@ class CompleteContactForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
- 
-        self.fields['is_complete'] = forms.BooleanField(required=False, initial=False, label='Mark as complete?')
+
+        self.fields['is_complete'] = forms.BooleanField(required=False,
+                                                        initial=False,
+                                                        label='Mark as complete?')
         for field in self.fields:
             if field != 'is_complete':
                 self.fields[field].disabled = True
@@ -49,7 +49,7 @@ class PrivateCoachingForm(forms.ModelForm):
     class Meta:
         model = PrivateCoachingContact
         exclude = ('date_sent', 'is_complete')
-    
+
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
@@ -66,10 +66,11 @@ class PrivateCoachingForm(forms.ModelForm):
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0'
-            self.fields['level'] = forms.ModelChoiceField(queryset=Level.objects.all(), label='Current Level')
-            self.fields['venue'] = forms.ModelChoiceField(queryset=Venue.objects.all(), label='Preferred Venue')
+            self.fields['level'] = forms.ModelChoiceField(queryset=Level.objects.all(),
+                                                          label='Current Level')
+            self.fields['venue'] = forms.ModelChoiceField(queryset=Venue.objects.all(),
+                                                          label='Preferred Venue')
             self.fields[field].label = False
-        
 
 
 class CompletePrivateCoachingForm(forms.ModelForm):
@@ -80,9 +81,10 @@ class CompletePrivateCoachingForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
- 
-        self.fields['is_complete'] = forms.BooleanField(required=False, initial=False, label='Mark as complete?')
+
+        self.fields['is_complete'] = forms.BooleanField(required=False,
+                                                        initial=False,
+                                                        label='Mark as complete?')
         for field in self.fields:
             if field != 'is_complete':
                 self.fields[field].disabled = True
-

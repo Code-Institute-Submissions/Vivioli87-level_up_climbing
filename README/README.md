@@ -5,7 +5,7 @@ A climbing coaching platform where users can book and pay for climbing courses w
 
 [Please view the live project here](https://level-up-climbing.herokuapp.com/)
 
-![Mockups]() 
+![Mockups](/README/images/mockup.png) 
 
 ## Table of Contents
 
@@ -80,7 +80,7 @@ Coaches
 Site owner/Superuser
 1. As a site owner and as a superuser, I would like to be able to add a coaching course to the site but also edit it to be able to provide coaching options for the site users. (For safety I will not delete courses in case users have paid for a slot but can edit time/venue/coach if the situation calls for it.)
 2. As a site owner and as a superuser, I would like to mark a course as completed so that they no longer appear on the courses page for users to book.
-3. As a site owner and as a superuser, I would like to have a page where I can view and enquiries from users, whether general or requests for 1:1 coaching.
+3. As a site owner and as a superuser, I would like to have a page where I can view enquiries from users, whether general or requests for 1:1 coaching.
 4. As a site owner and as a superuser, I would like to be able to view the enquiries with the visitors contact information and mark the enquiry as complete when its been resolved.
 5. As a site owner and as a superuser, I would like to add articles, as well as edit and delete them if needs be.
 6. As a site owner, I would like an error page directing the user back to a safe page if there are any broken links/404 errors on the website.
@@ -105,22 +105,44 @@ Level Up! Climbing website is designed to be effective, consistent and user frie
         - Can use the contact forms, both for general enquiries and 1:1 coaching.
         - Can view an overview of courses that are on offer however will be prompted to register for an account/login to be able to book one or to view more details.
         - Can view an overview of articles that are on offer to read however will be prompted to register for an account/login to be able to read the full article.
-    - Logged in users (in addition to the above):
+    - Logged in users (in addition to the above) including coaches:
         - Can view the full course details and see if their is availability or if they have already booked.
         - Can proceed to booking a course with a secure checkout page.
         - Can update their profile information and update this
         - Can view the full article and leave a comment if they wished to.
         - Can edit and delete their own comments left on the articles
+    - Site owener/Superuser
+        - In addition to the above...
+            - can add and edit a course.
+            - can add, edit and delete an article.
+            - can view enquiries sent from contact forms and can mark them as complete.
+            - can view the django admin page.
+    
+    - There are 7 apps on the website (not including the project level app): Articles, checkout, contact, courses, home,
+    profiles and venues.
 
     Database:
+    
+    ![Database schema](/README/images/database_schema.png) 
 
 [Back to table of contents](#table-of-contents)
 
 ## Skeleton
 
-The initial webpage layouts were sketched on the paper. The wireframes were then created in Balsamiq. Please view the wireframes for desktop, tablet and mobile screens on the following pdf.
+The initial webpage layouts were sketched on the paper. The wireframes were then created in Balsamiq. Please view the wireframes for desktop, tablet and mobile screens on the following images. These are rough design ideas and will have changed and developed into what the website is now.
 
-![Wireframe PDF]()
+Desktop
+
+![Wireframe - Desktop](/README/images/Desktop_wireframes.png)
+
+Tablet
+
+![Wireframe - Tablet](/README/images/Tablet_wireframes.png)
+
+Mobile
+
+![Wireframe - Mobile](/README/images/Mobile_wireframes.png)
+
 
 [Back to table of contents](#table-of-contents)
 
@@ -232,7 +254,7 @@ See further information on results found during validation on the separate [Test
 
 ## Testing
 
-Testing process was written in a separate document [Testing document]()
+Testing process was written in a separate document [Testing document](/README/testing_README.md)
 
 [Back to table of contents](#table-of-contents)
 
@@ -247,9 +269,11 @@ To clone this project from its [GitHub repository](https://github.com/Vivioli87/
 4. Change the current working directory to the location where you want the cloned directory to be made
 5. Type `git clone`, and then paste the URL you copied in Step 2
 6. Press Enter. Your local clone will be created
-
-
-**** NOT FINISHED ****
+7. Create a file called env.py to hold your app's environment variables, which should contain the following:
+ - os.environ.setdefault("IP", "0.0.0.0")
+ - os.environ.setdefault("PORT", "5000")
+ - os.environ.setdefault("SECRET_KEY", "<app secret key>")
+ - link to local sqlite database.
 
 ### How to deploy to Heroku
 
@@ -262,13 +286,24 @@ To deploy the app to Heroku from its [GitHub repository](https://github.com/Vivi
 2. **Push** these files to GitHub
 3. **Log In** to [Heroku](https://id.heroku.com/login)
 4. Select **Create new app** from the dropdown in the Heroku dashboard
-5. Choose a unique name ('meeple-finder') for the app and the location nearest to you
+5. Choose a unique name ('level-up-climbing') for the app and the location nearest to you
 6. Go to the **Deploy** tab and under **Deployment method** choose GitHub
 7. In **Connect to GitHub** enter your GitHub repository details and once found, click **Connect**
 8. Go to the **Settings** tab and under **Config Vars** choose **Reveal Config Vars**
-9. Enter the following keys and values,
-
-**** NOT FINISHED ****
+9. Enter the following keys (values not shown as personal to the app).
+        - SECRET KEY
+        - DATABASE_URL = (postgres key)
+    - For AWS access
+        AWS_ACCESS_KEY-ID = *
+        AWS_SECRET_ACCESS_KEY = *
+        USE_AWS = True
+    - For gmail services to allow confirmation emails to be sent
+        EMAIL_HOST_PASS = *
+        EMAIL_HOST_USER = (your gmail email address)
+    - For stripe
+        STRIPE_PUBLIC_KEY = *
+        STRIPE_SECRET_KEY = *
+        STRIPE_WH_SECRET = *
 
 10. Go back to the **Deploy** tab and under **Automatic deploys** choose **Enable Automatic Deploys**
 11. Under **Manual deploy**, select **master** and click **Deploy Branch**
@@ -298,17 +333,17 @@ To deploy the app to Heroku from its [GitHub repository](https://github.com/Vivi
 
 ### Media
 
-- Climbing wall photo (main home page image) - Photo by yns plt on Unsplash
-- Image of coach 'Dave' - Photo by LOGAN WEAVER on Unsplash
-- Image of coach 'Sarah' - Photo by Elijah M. Henderson on Unsplash
-- Hands pic on articles - Photo by Brook Anderson on Unsplash
-- Shoes pic on articles - Photo by Elahe Motamedi on Unsplash
+- Climbing wall photo (main home page image) - Photo by [yns plt](https://unsplash.com/@ynsplt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- Image of coach 'Dave' - Photo by [LOGAN WEAVER](https://unsplash.com/@lgnwvr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- Image of coach 'Sarah' - Photo by [Elijah M. Henderson](https://unsplash.com/@elijahhenderson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- Hands pic on articles - Photo by [Brook Anderson](https://unsplash.com/@brookanderson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- Shoes pic on articles - Photo by [Elahe Motamedi](https://unsplash.com/@elahemotamedi?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+- Other articles pics:
+    - Photo by [bady abboas](https://unsplash.com/@bady?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash 
+    - Photo by [Markus Spiske](https://unsplash.com/@markusspiske?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-- 'no image' image - https://www.freeiconspng.com/img/23485 
-- favicon - made by Freepick from www.flaticon.com
-
-*** photo credits of other article pics
-
+- ['no image' image](https://www.freeiconspng.com/img/23485)
+- [favicon](https://www.flaticon.com/authors/freepik) - made by Freepick from www.flaticon.com
 
 
 [Back to table of contents](#table-of-contents)

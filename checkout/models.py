@@ -10,7 +10,7 @@ class Booking(models.Model):
     booking_reference = models.CharField(max_length=32, null=False,
                                          editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, 
+                                     null=True, blank=True,
                                      related_name='bookings')
     full_name = models.CharField(max_length=60, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -33,7 +33,7 @@ class Booking(models.Model):
         """
         if not self.booking_reference:
             self.booking_reference = self._create_booking_reference()
-        
+
         super().save(*args, **kwargs)
 
     def __str__(self):

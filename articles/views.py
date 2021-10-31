@@ -22,8 +22,6 @@ def all_articles(request):
     except EmptyPage:
         articles = paginator.page(paginator.num_pages)
 
-
-
     template = 'articles/all_articles.html'
     context = {
         'articles': articles,
@@ -74,6 +72,7 @@ def article_detail(request, article_id):
     }
 
     return render(request, template, context)
+
 
 @login_required
 def add_article(request):

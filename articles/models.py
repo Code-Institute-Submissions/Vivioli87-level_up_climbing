@@ -2,7 +2,7 @@ from django.db import models
 
 from profiles.models import UserProfile
 
-# Create your models here.
+
 class Article(models.Model):
     title = models.CharField(max_length=254, null=False, blank=False)
     content = models.TextField()
@@ -24,8 +24,7 @@ class ArticleComments(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-         verbose_name_plural = "Article Comments"
+        verbose_name_plural = "Article Comments"
 
     def __str__(self):
         return self.title
-

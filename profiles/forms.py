@@ -9,7 +9,6 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ('user', 'is_coach',)
 
-
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
@@ -32,7 +31,8 @@ class CoachForm(forms.ModelForm):
         model = Coach
         exclude = ('coach',)
 
-    image = forms.ImageField(label='Image', required=False, widget=ClearableFileInput)
+    image = forms.ImageField(label='Image', required=False,
+                             widget=ClearableFileInput)
 
     def __init__(self, *args, **kwargs):
 

@@ -28,14 +28,14 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
 
 
 class Coach(models.Model):
-    coach = models.ForeignKey(UserProfile, on_delete=models.CASCADE, 
+    coach = models.ForeignKey(UserProfile, on_delete=models.CASCADE,
                               limit_choices_to={'is_coach': True})
     about_me = models.TextField()
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     class Meta:
-         verbose_name_plural = "Coaches"
+        verbose_name_plural = "Coaches"
 
     def __str__(self):
         return self.coach.full_name

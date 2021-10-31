@@ -9,7 +9,8 @@ class ArticleForm(forms.ModelForm):
         model = Article
         exclude = ('created_date',)
 
-    image = forms.ImageField(label='Image', required=False, widget=ClearableFileInput)
+    image = forms.ImageField(label='Image', required=False,
+                             widget=ClearableFileInput)
 
     def __init__(self, *args, **kwargs):
 

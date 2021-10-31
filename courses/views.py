@@ -12,10 +12,11 @@ from .forms import CourseForm
 
 
 def all_courses(request):
-    """ A view to bring back all active courses, paginated. Include filter on course level"""
+    """ A view to bring back all active courses,
+    paginated. Include filter on course level"""
 
     courses = Course.objects.filter(course_complete=False).order_by('start_date')
-    
+
     levels = None
 
     if request.GET:
@@ -23,7 +24,7 @@ def all_courses(request):
             levels = request.GET['level'].split(',')
             courses = courses.filter(level__name__in=levels)
             levels = Level.objects.filter(name__in=levels)
-        
+
             page = request.GET.get('page', 1)
             paginator = Paginator(courses, 3)
 
@@ -32,7 +33,7 @@ def all_courses(request):
             except PageNotAnInteger:
                 courses = paginator.page(1)
             except EmptyPage:
-                courses = paginator.page(paginator.num_pages)   
+                courses = paginator.page(paginator.num_pages)
     else:
         page = request.GET.get('page', 1)
         paginator = Paginator(courses, 3)
@@ -61,7 +62,8 @@ def course_detail(request, course_id):
     capacity = course.course_type.capacity
 
     course_bookings = Booking.objects.filter(booked_course=course).count()
-    user_booked = Booking.objects.filter(booked_course=course, user_profile=profile)
+    user_booked = Booking.objects.filter(booked_course=course,
+                                         user_profile=profile)
     available_course_places = capacity - course_bookings
 
     context = {
@@ -78,9 +80,10 @@ def course_detail(request, course_id):
 @login_required
 def add_course(request):
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        messages.error(request,
+                       'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
-    
+
     if request.method == 'POST':
         form = CourseForm(request.POST)
         if form.is_valid():
@@ -108,7 +111,7 @@ def edit_course(request, course_id):
     Edit a course
     """
     if not request.user.is_superuser:
-        messages.error(request, 
+        messages.error(request,
                        'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
 
