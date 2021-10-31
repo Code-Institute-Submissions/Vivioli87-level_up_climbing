@@ -32,12 +32,6 @@
                                         {% else %}
                                             <p class="card-text text-danger"><strong>You must be logged in to read articles.</strong></p> 
                                             <p class="card-text custom-green-text"><strong>Havent got an account? Its free and easy to sign up!</strong></p>
-                                            <a href="#" class="btn btn-sm btn-outline-dark back-button">
-                                                <span class="icon">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                                <span>Back</span>
-                                            </a>
                                             <a href="{% url 'account_signup' %}" class="btn btn-sm btn-success btn-custom">Sign Up</a>
                                             <a href="{% url 'account_login' %}" class="btn btn-sm btn-primary">Log In</a>
                                         {% endif %}
@@ -76,9 +70,4 @@
         </div>
     </div> 
 </div>
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-    <script src="{% static 'js/backbutton.js' %}"></script>
 {% endblock %}
