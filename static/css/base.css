@@ -289,7 +289,6 @@ label {
     border-bottom: 1px solid #127245;
     text-transform: uppercase;
     font-weight: bolder;
-    overflow: auto;
 }
 
 .article-overview > p.card-text, .article-overview > a {
@@ -303,6 +302,7 @@ label {
     margin: 0 auto;
     margin-bottom: 2rem;
     box-shadow: 5px 5px 5px #888888;
+    overflow: auto;
 }
 
 .article-detail-card > img {
