@@ -4,7 +4,7 @@ html {
 
 
 body {
-    background: url('/media/yns-plt-NY1D4Zni7fc-unsplash.jpg') no-repeat center center fixed;
+    background: linear-gradient(black, transparent, transparent), url('/media/yns-plt-NY1D4Zni7fc-unsplash.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #000000;
     font-family: 'Lato' ;
