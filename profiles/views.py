@@ -31,7 +31,7 @@ def profile(request):
         
         form = UserProfileForm(instance=profile)
         coach_form = CoachForm(instance=coach)
-        course = Course.objects.all().order_by('start_date')
+        courses = Course.objects.all().order_by('start_date')
         coaches_courses = Course.objects.filter(coach=coach).order_by('start_date')
 
         template = 'profiles/coach_profile.html'
@@ -39,7 +39,7 @@ def profile(request):
             'form': form,
             'coach_form': coach_form,
             'profile': profile,
-            'course': course,
+            'courses': courses,
             'coaches_courses': coaches_courses,
             'coach': coach,
         }
@@ -56,14 +56,14 @@ def profile(request):
 
         form = UserProfileForm(instance=profile)
         bookings = Booking.objects.filter(user_profile=profile)
-        course = Course.objects.all().order_by('start_date')
+        courses = Course.objects.all().order_by('start_date')
 
         template = 'profiles/profile.html'
         context = {
             'form': form,
             'profile': profile,
             'bookings': bookings,
-            'course': course,
+            'courses': courses,
         }
 
         return render(request, template, context)

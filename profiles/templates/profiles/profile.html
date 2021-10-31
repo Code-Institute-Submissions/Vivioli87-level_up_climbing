@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div class="overlay"></div>
+<div class="transparent-overlay"></div>
 
 <div class="container-fluid">
     <div class="row">
@@ -38,10 +38,10 @@
                         {{ booking.booked_course }}
                     </div>
                     <div class="card-body">
-                        {% for c in course %}
+                        {% for c in courses %}
                             {% if booking.booked_course == c.name %}
-                            <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
-                            <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
+                                <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
+                                <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
                             {% endif %}
                         {% endfor %}
                         <p class="card-text"><span class="bold-green-text">Booking reference:</span> {{ booking.booking_reference }}</p>
