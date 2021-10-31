@@ -41,6 +41,11 @@
                         {% for c in courses %}
                             {% if booking.booked_course == c.name %}
                                 <p class="card-text"><span class="bold-green-text">Course start date:</span> {{ c.start_date }}</p>
+                                {% if course.lesson_number > 1 %}
+                                    <p class="card-text">Repeats every {{ c.start_date|date:"l" }} at {{ c.start_date|date:"g:i a" }} for {{ c.lesson_number}} weeks.</p>
+                                {% else %}
+                                    <p class="card-text">This is a one off session</p>
+                                {% endif %}
                                 <p class="card-text"><span class="bold-green-text">Venue:</span> {{ c.venue }}</p>
                             {% endif %}
                         {% endfor %}

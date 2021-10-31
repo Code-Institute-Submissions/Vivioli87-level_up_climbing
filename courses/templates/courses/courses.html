@@ -43,7 +43,7 @@
                     </div>
                     <div class="card-body">
                     <p class="card-text">{{ course.course_type.description }}</p>
-                    <p class="card-text"><span>Course start date & time:</span> {{ course.start_date|date:"l j/m/Y" }} at {{ course.start_date|date:"g:i a" }}</p>
+                    <p class="card-text"><span>Course start date & time:</span> {{ course.start_date }}</p>
                     {% if course.lesson_number > 1 %}
                         <p class="card-text"> {{ course.lesson_number}} lessons over {{course.lesson_number}} weeks. Repeats every {{ course.start_date|date:"l" }} at {{ course.start_date|date:"g:i a" }}</p>
                     {% else %}

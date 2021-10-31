@@ -25,9 +25,9 @@
                                 {% endif %}
                             {% endfor %}
                         </ul>
-                    <p class="card-text"><span class="bold-green-text">Course start date & time:</span> {{ course.start_date|date:"l" }} {{ course.start_date }}</p>
+                    <p class="card-text"><span class="bold-green-text">Course start date & time:</span> {{ course.start_date }}</p>
                     {% if course.lesson_number > 1 %}
-                        <p class="card-text"> {{ course.lesson_number}} lessons over {{course.lesson_number}} weeks. Repeats every {{ course.start_date|date:"l" }} at {{ course.start_date|date:"h:i a" }}</p>
+                        <p class="card-text"> {{ course.lesson_number}} lessons over {{course.lesson_number}} weeks. Repeats every {{ course.start_date|date:"l" }} at {{ course.start_date|date:"g:i a" }}</p>
                     {% else %}
                         <p class="card-text">This is a one off session</p>
                     {% endif %}

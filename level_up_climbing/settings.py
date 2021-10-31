@@ -16,7 +16,7 @@ import dj_database_url
 
 # To change format of the date on website
 from django.conf.locale.en import formats as en_formats
-en_formats.DATETIME_FORMAT = "d/m/y, h:i a"
+en_formats.DATETIME_FORMAT = "l j/m/Y, g:i a"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
