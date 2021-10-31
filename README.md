@@ -1,108 +1,330 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Level Up! Climbing
+A climbing coaching platform where users can book and pay for climbing courses with Level Up climbing coaches. Read articles about climbing and be part of the community.
 
-Welcome Vivioli87,
+*Developed and designed for Code Institue, Milestone Project 4: Full Stack Frameworks with Django
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Please view the live project here](https://level-up-climbing.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+![Mockups]() 
 
-## Gitpod Reminders
+## Table of Contents
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+1. [Overview](#overview)
+2. [User Experience](#ux-(user-experience))
+    - [User Stories](#user-stories)
+        - Visitor Stories
+        - Business Stories
+    - [Structure](#structure)
+    - [Skeleton](#skeleton)
+        - Wireframes
+    - [Design](#design)
+        - Colour Scheme
+        - Fonts
+        - Imagery
+3. [Features](#features)
+    - Current Features
+    - Future Implementation
+4. [Technologies](#technologies)
+    - Languages
+    - Frameworks, Libraries and Tools
+    - Validation
+5. [Testing](#testing)
+6. [Deployment](#deployment)
+    - GitHub pages
+7. [Credits](#credits)
+    - Code
+    - Media
+    - Content
+8. [Acknowledgements](#acknowledgements)
+9. [Disclaimer](#disclaimer)
 
-`python3 -m http.server`
+## Overview
 
-A blue button should appear to click: _Make Public_,
+My MS4, Full Stack Frameworks with Django project, for my Code Institute course. I decided to base my project on climbing as this is one of my hobbies.
 
-Another blue button should appear to click: _Open Browser_.
+I came up with the name Level Up! Climbing as it is aimed at climbers at all levels improving their climbing grade through the coaching courses provided.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+The purpose of this site is to be a community for climbers and for the company to offer their coaching services around the Greater Manchester area at various gyms. I've based the idea loosely on Catalyst Climbing who offer a similar idea of 1:1 coaching in the London area. 
 
-A blue button should appear to click: _Make Public_,
+A registered user has access to their own profile page that contains an overview of courses they have booked through the website and can also leave comments on articles that are available to read.
 
-Another blue button should appear to click: _Open Browser_.
+[Back to table of contents](#table-of-contents)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## UX (User Experience)
 
-To log into the Heroku toolbelt CLI:
+The user types for this website would be for climbers who want to improve their knowledge either through the coaching courses or through the articles available
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Visitor Stories
+1. As a site visitor, I would like to easily register for an account so that I can have a personal account to view a profile with personalised information.
+2. As a site visitor, I would like to easily login and logout so that I can access my personal account information.
+3. As a site visitor, I would like to easily recover my password in case I forget it so that I can recover access to my account.
+4. As a site visitor, I would like to receive an email confirmation after registering so that I can verify that my account registration was successful.
+5. As a site visitor, I would like to have a personalised user profile so that I can view my personal coaching history/upcoming schedule and update my personal information.
+6. As a site visitor, I would like to view a list of coaching options so that I can select some to book/purchase.
+7. As a site visitor, I would like to view coaching course session details so that I can identify the level of climbing aimed at, times, dates, venue, number of sessions in course, price and coach.
+8. As a site visitor, I would like to be able to be able to book or enquire about 1:1 coaching options so that I can find out about  price per session, available times, dates and coaches.
+9. As a site visitor, I would like to review the course I am booking at checkout so that I can ensure I am booking the correct course and can review important information. 
+10. As a site visitor, I would like to easily enter my payment information so that I can check out quickly and with no hassles.
+11. As a site visitor, I would like to feel my personal and payment information is safe and secure so that I can confidently provide the needed information to make a purchase.
+12. As a site visitor, I would like to view a booking confirmation after checkout, with a unique booking reference, so that I can verify that I havent made any mistakes.
+13. As a site visitor, I would like to view articles about climbing so that I can learn more about certain climbing topics
+14. As a site visitor, I would like to comment on the articles as well as edit and delete my own comments if needs be.
+15. As a site visitor, I would like a site that is easy to navigate and gives messages to confirm actions have been completed.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Business Stories
 
-------
+Coaches
+1. As a coach, I would like to have a personalised coach profile so that I can identify what courses I am running and the course information.
+2. As a coach, I would like to be able to update my personal information and coach information so users can learn more about me.
 
-## Release History
+Site owner/Superuser
+1. As a site owner and as a superuser, I would like to be able to add a coaching course to the site but also edit it to be able to provide coaching options for the site users. (For safety I will not delete courses in case users have paid for a slot but can edit time/venue/coach if the situation calls for it.)
+2. As a site owner and as a superuser, I would like to mark a course as completed so that they no longer appear on the courses page for users to book.
+3. As a site owner and as a superuser, I would like to have a page where I can view and enquiries from users, whether general or requests for 1:1 coaching.
+4. As a site owner and as a superuser, I would like to be able to view the enquiries with the visitors contact information and mark the enquiry as complete when its been resolved.
+5. As a site owner and as a superuser, I would like to add articles, as well as edit and delete them if needs be.
+6. As a site owner, I would like an error page directing the user back to a safe page if there are any broken links/404 errors on the website.
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+[Back to table of contents](#table-of-contents)
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+## Structure
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+Level Up! Climbing website is designed to be effective, consistent and user friendly.
+- Interaction Design
+    - Consistent design will be used throughout the website to maintain a good UX.
+    - The simple navigation bar will be consistent across all pages.
+    - Buttons when hovered over and clicked will provide a visual indication to the site visitors what they are selecting.
+    - Consistent colour scheme will be used throughout the site.
+    - Links to external pages, if applicable, will open in a new tab so the user is not taken away from the website.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- Information Architecture (IA)
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+    Website:
+    - Non logged in users:
+        - Can view the home page and about pages to learn more about the company.
+        - Can use the contact forms, both for general enquiries and 1:1 coaching.
+        - Can view an overview of courses that are on offer however will be prompted to register for an account/login to be able to book one or to view more details.
+        - Can view an overview of articles that are on offer to read however will be prompted to register for an account/login to be able to read the full article.
+    - Logged in users (in addition to the above):
+        - Can view the full course details and see if their is availability or if they have already booked.
+        - Can proceed to booking a course with a secure checkout page.
+        - Can update their profile information and update this
+        - Can view the full article and leave a comment if they wished to.
+        - Can edit and delete their own comments left on the articles
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+    Database:
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+[Back to table of contents](#table-of-contents)
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Skeleton
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+The initial webpage layouts were sketched on the paper. The wireframes were then created in Balsamiq. Please view the wireframes for desktop, tablet and mobile screens on the following pdf.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+![Wireframe PDF]()
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+[Back to table of contents](#table-of-contents)
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+## Design
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+### Colour Scheme
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- After sourcing the image that I used for my home page, the color scheme developed from there. I enjoyed the bright green colour climbing holds that stood out and decided to use green and whites to provide a good contrast but sleek design.
+- I use two main green colors #10bc6c and #127245. the former being a bright green similar to the color of the climbing hold in my main cover image. The second being a darker green that will add more depth and increase readability on certain webpages.
+- I use a green and white linear transparent gradient overlay over the main cover image on other pages to keep the theme consistent on the website. On pages where there is a lot of content/text I have removed the transparency.
+- According to a colour pyschology website [very well mind](https://www.verywellmind.com/color-psychology-green-2795817), green is calming and can remind people of nature and growth.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Fonts
 
-------
+- I used just the one font through this project, Lato in order to keep the text clean and consistent.
+- Both fonts were imported from [Google Fonts](https://fonts.google.com/)
 
-## FAQ about the uptime script
+### Imagery
 
-**Why have you added this script?**
+- All imagery have been sources from [Unsplash](https://unsplash.com/) with the exception of:
+    - the no image placeholder image from [free icon spng](https://www.freeiconspng.com/img/23485)
+    - the icon used in my favicom which was made by Freepick from [flaticon](www.flaticon.com)
+- All images are climbing themed and were chosen due to their bright colors and fun appearance.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+[Back to table of contents](#table-of-contents)
 
-**How will this affect me?**
+## Features
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+### Current Features
+- Navigation bar with dropdowns (consistant on all pages):
+    - an easy way to navigate through the website to specific sections.
+    - The navigation bar is different depending on whether a user is logged in or not. (More options are availible to users that are logged in)
+    - The navigation bar is fully responsive and it collapses to navbar-toggler-icon (hamburger menu) on smaller devices, bringing up the link options a side navigation bar.
+- Responsive
+    - Side navigation bar on smaller devices.
+    - Size and layout differences to be more aesthetically pleasing on medium and small devices, which is discussed in the specific pages below.
+- Pagination
+    - Pagination is used on the courses, articles and article detail (on the comments) to limit results to a certain number per page. Allowing the user to not have to scroll a lot on 1 page.
+- Filter on courses
+    - Users can filter courses by their 'level' to make their course search easier and more applicable to their needs.
+- 404 page
+    - If an error occurs, I have built a 404 page to help direct users and visitors back to safety.
+- login required
+    - I have restricted access to pages that should only be accessed when logged in using a decorator.
+- contact forms
+    - for the user to get in touch with the company.
+- secure checkout using Stripe.
+- secure register and login process using django all auth.
+- admin page for the superuser.
+- google maps to show users where the venues are.
+- Messages to confirm to the user when actions have been taken or if there is an error on something that happened.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+### Future Implementation
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+More developed features for the 1:1 coaching aspect.
+    - A calendar system so that it is easier for the superuser/coach to schedule individual sessions.
+    - Feedback forms from coaching sessions so that the user has more interaction from the coach on the website and it can aid their learning.
 
-**So….?**
+Shop with company branded apparrel to add more economic opportunities to this website
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+[Back to table of contents](#table-of-contents)
 
-**Can I opt out?**
+### Languages
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) was used as the main language to complete the structure of the website.
+- [CSS3](https://en.wikipedia.org/wiki/CSS) was used to style the website.
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript) was used for responsive aspects within bootstrap but also my own JavaScript code to add interactivity to the website.
+- [JQuery](https://en.wikipedia.org/wiki/JQuery) was used for responsive aspects within bootstrap but also custom Jquery code to add interactivity to the website.
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) was used for back end data centric work and connecting to the database.
+- [Markdown](https://en.wikipedia.org/wiki/Markdown) - used for the readme documnetation.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+### Webframwork
 
-**Anything more?**
+- [Django](https://en.wikipedia.org/wiki/Django_(web_framework))
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+### Database
 
----
+- [SQLite](https://en.wikipedia.org/wiki/SQLite) was used in local development environment
+- [Postgre](https://en.wikipedia.org/wiki/PostgreSQL) was used when the site had been deployed to heroku
 
-Happy coding!
+### Frameworks, Libraries and Tools
+
+- [django](https://www.djangoproject.com/) 
+- [Bootstrap](https://getbootstrap.com/) for styling.
+- [Google Fonts](https://fonts.google.com/) was used to import the fonts to the website.
+- [Unspash](https://unsplash.com/) for images.
+- [Favicon generator](https://realfavicongenerator.net/)
+- [Balsamiq](https://balsamiq.com/) was used to create the wireframes for the website.
+- [CSS Tricks](https://css-tricks.com/) was used as a general source.
+- [W3Schools](https://www.w3schools.com/) was used as a general source.
+- [StackOverflow](https://stackoverflow.com/) was used as a general source.
+- [GitHub](https://github.com/) was used for repository hosting and for storing the source code.
+- [Gitpod](https://gitpod.io/) was used as the development environment for writing the code.
+- [Git](https://git-scm.com/) was used as version control system to add, commit and push code to GitHub.
+- [Techsini](https://techsini.com/multi-mockup/) was used to create the responsive mockup image.
+- [W3C Spell checker](https://www.w3.org/2002/01/spellchecker) was used to check the spelling of the webpage.
+- [Markdown guide](https://www.markdownguide.org/basic-syntax/)
+- [Heroku](heroku.com/home) for deployment
+- [Google Developers](https://developers.google.com/) for the maps API
+- [Amazon Web Services](https://aws.amazon.com/) for hosting static and media files for deployed site.
+
+### Validation
+
+- [W3C Markup Validation Service](https://validator.w3.org/#validate_by_input) was used for Markup validation.
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input) was used for CSS code validation.
+- [jshint.com](https://jshint.com/) was used to check JS code.
+
+See further information on results found during validation on the separate [Testing document]().
+
+## Testing
+
+Testing process was written in a separate document [Testing document]()
+
+[Back to table of contents](#table-of-contents)
+
+## Deployment
+
+### Clone 
+To clone this project from its [GitHub repository](https://github.com/Vivioli87/level_up_climbing):
+
+1. From the repository, click **Code**
+2. In the **Clone >> HTTPS** section, copy the clone URL for the repository
+3. In your local IDE open Git Bash
+4. Change the current working directory to the location where you want the cloned directory to be made
+5. Type `git clone`, and then paste the URL you copied in Step 2
+6. Press Enter. Your local clone will be created
+
+
+**** NOT FINISHED ****
+
+### How to deploy to Heroku
+
+To deploy the app to Heroku from its [GitHub repository](https://github.com/Vivioli87/meeple_finder), the following steps were taken:
+
+1. From the GitPod terminal, create **requirements.txt** and **Procfile** using these commands in your console:
+- pip3 freeze --local > requirements.txt
+- echo web: python app.py > Procfile
+
+2. **Push** these files to GitHub
+3. **Log In** to [Heroku](https://id.heroku.com/login)
+4. Select **Create new app** from the dropdown in the Heroku dashboard
+5. Choose a unique name ('meeple-finder') for the app and the location nearest to you
+6. Go to the **Deploy** tab and under **Deployment method** choose GitHub
+7. In **Connect to GitHub** enter your GitHub repository details and once found, click **Connect**
+8. Go to the **Settings** tab and under **Config Vars** choose **Reveal Config Vars**
+9. Enter the following keys and values,
+
+**** NOT FINISHED ****
+
+10. Go back to the **Deploy** tab and under **Automatic deploys** choose **Enable Automatic Deploys**
+11. Under **Manual deploy**, select **master** and click **Deploy Branch**
+12. Once the app has finished building, click **Open app** from the header row of the dashboard
+
+[Back to table of contents](#table-of-contents)
+
+## Credits
+
+### Code/knowledge
+
+- Resource used to help with adding django pagination to the site.
+    [Pagination with django](https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html)
+
+- Hex codes for transparent colors.
+    [Transparent Hex Codes](https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4 )
+
+- Line breaks on django template tags.
+    [stackoverflow](https://stackoverflow.com/questions/10270891/newline-in-models-textfield-not-rendered-in-template)
+
+- Django documnentation for many things such as how to override the 404 page, help on models, forms, template tags.
+    [django docs](https://docs.djangoproject.com/en/3.2/)
+
+- Tutor support - Johann who helped me figure out how to autofill the datetime input with existing values.
+
+- Boutique Ado walk through project from code institue.
+
+### Media
+
+- Climbing wall photo (main home page image) - Photo by yns plt on Unsplash
+- Image of coach 'Dave' - Photo by LOGAN WEAVER on Unsplash
+- Image of coach 'Sarah' - Photo by Elijah M. Henderson on Unsplash
+- Hands pic on articles - Photo by Brook Anderson on Unsplash
+- Shoes pic on articles - Photo by Elahe Motamedi on Unsplash
+
+- 'no image' image - https://www.freeiconspng.com/img/23485 
+- favicon - made by Freepick from www.flaticon.com
+
+*** photo credits of other article pics
+
+
+
+[Back to table of contents](#table-of-contents)
+
+## Acknowledgements
+
+- My mentor, Mr. Victor Miclovich, for the helpful feedback and guidance.
+- [Code Institute](learn.codeinstitute.net) for all course materials, wlakthrough project and ongoing support.
+- Johann, Code Institute tutor support.
+- Fellow Code Institute students for their feedback, suggestions and resource links.
+- My family and friends for testing and useful feedback.
+
+[Back to table of contents](#table-of-contents)
+
+## Disclaimer
+
+The information provided and images used on this website are for educational purposes only.
+
+[Back to table of contents](#table-of-contents)
