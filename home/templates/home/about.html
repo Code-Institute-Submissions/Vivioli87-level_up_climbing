@@ -11,7 +11,7 @@
             <h1 class="text-over-image pb-4">Who are we?</h1>
             <p>Level up! Climbing are a group of experiened coaches within the Greater Manchester area, who are passionate about passing on their climbing knowledge to others.</p>
             <p>We provide training at various venues, from group classes to 1:1 coaching and all abillities and ages.</p>
-            <p>With Level Up! Climbing you will find a coaching option suitable for you! <a class="custom-links" href="{% url 'courses' %}">Click here</a> to view all our available coaching options.</p>
+            <p>With Level Up! Climbing you will find a coaching option suitable for you! View all our available <a class="custom-links" href="{% url 'courses' %}">coaching options.</a></p>
         </div>
     </div>
     <hr>
@@ -36,7 +36,7 @@
                 <div class="col-12 col-md-6">
                     <div class="card course-card mb-3" style="max-width: 640px;">
                         <div class="card-header">
-                            <h5>{{ coach.coach.full_name }}</h5>
+                            <h2>{{ coach.coach.full_name }}</h2>
                         </div>
                         <div class="row no-gutters">
                             <div class="col-md-6">

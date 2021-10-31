@@ -1,13 +1,13 @@
 <div class="collapse navbar-collapse" id="mobile-nav">
     <ul class="navbar-nav w-auto mx-auto">
         <li class="nav-item dropdown">
-            <a class="logo-font nav-link" href="#" id="class-options-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font nav-link" href="#" id="about-options-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 About
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="class-options-link">
+            <div class="dropdown-menu border-0" aria-labelledby="about-options-link">
                 <a href="{% url 'courses' %}" class="dropdown-item">General Info</a>
                 <a href="{% url 'all_venues' %}" class="dropdown-item">Venues</a> 
-                <a href="" class="dropdown-item">Contact Us</a> 
+                <a href="{% url 'contact' %}" class="dropdown-item">Contact Us</a> 
             </div>
         </li>
         

@@ -7,6 +7,7 @@
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="Level up! Climbing are a group of experiened coaches within the Greater Manchester area, who are passionate about passing on their climbing knowledge to others. We provide training at various venues, from group classes to 1:1 coaching and all abillities and ages. This website is a platform to book coaching courses and read articles about climbing">
         {% endblock %}
 
         {% block extra_meta %}
@@ -52,13 +53,13 @@
                 <div class="col-12 col-lg-8 my-auto py-1 py-lg-0">
                     <ul class="list-inline list-unstyled text-center float-end text-lg-right my-0">
                         <li class="list-inline-item dropdown">
-                            <a class="nav-link" href="#" id="class-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="#" id="about-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="text-center">
                                     <div><i class="fas fa-info-circle fa-lg"></i></div>
                                     <p class="my-0">About</p>
                                 </div>
                             </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="class-options">
+                            <div class="dropdown-menu border-0" aria-labelledby="about-options">
                                 <a href="{% url 'about' %}" class="dropdown-item">General Info</a>
                                 <a href="{% url 'all_venues' %}" class="dropdown-item text-dark">Venues</a> 
                                 <a href="{% url 'contact' %}" class="dropdown-item text-dark">Contact us</a>
