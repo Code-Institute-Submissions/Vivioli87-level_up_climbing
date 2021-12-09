@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 from .forms import BookingForm
 from .models import Booking
@@ -77,7 +78,18 @@ def booking_success(request, booking_reference):
 
     booking_submission = get_object_or_404(Booking,
                                            booking_reference=booking_reference)
+    email_subject = (f'Level Up! Climbing class booked '
+                     f'{booking_submission.booked_course}')
+    email_message = (f'To {booking_submission.user_profile} \n'
+                     f'Thank you for booking a course with us! \n'
+                     f'Your booking reference is {booking_reference} for '
+                     f'{booking_submission.full_name} to attend '
+                     f'{booking_submission.booked_course}. \n'
+                     f'All details will be on your profile page \n'
+                     'Thank you from all us at Level Up! Climbing')
 
+    send_mail(email_subject, email_message,
+              settings.DEFAULT_FROM_EMAIL, [booking_submission.email, ])
     messages.success(request,
                      f'Booking successfully processed! {booking_reference}')
 
