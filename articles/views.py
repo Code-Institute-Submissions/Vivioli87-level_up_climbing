@@ -47,8 +47,9 @@ def article_detail(request, article_id):
         comments = paginator.page(paginator.num_pages)
 
     if request.method == 'POST':
-        form = ArticleCommentForm(request.POST, initial={'article': article,
-                                                         'user_profile': profile})
+        form = ArticleCommentForm(request.POST,
+                                  initial={'article': article,
+                                           'user_profile': profile})
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully added article comment!')
@@ -78,9 +79,10 @@ def article_detail(request, article_id):
 def add_article(request):
     """ Add an article """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        messages.error(request,
+                       'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
-    
+
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -106,7 +108,8 @@ def add_article(request):
 def edit_article(request, article_id):
     """ Edit an article """
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, you do not have permissions to do that.')
+        messages.error(request,
+                       'Sorry, you do not have permissions to do that.')
         return redirect(reverse('home'))
 
     article = get_object_or_404(Article, pk=article_id)
@@ -154,7 +157,9 @@ def edit_comment(request, comment_id):
     article = comment.article
 
     if profile != comment.user_profile:
-        messages.error(request, 'Sorry, you do not have permissions to edit this comment.')
+        messages.error(request,
+                       'Sorry, '
+                       'you do not have permissions to edit this comment.')
         return redirect(reverse('all_articles'))
 
     if request.method == 'POST':
@@ -187,7 +192,9 @@ def delete_comment(request, comment_id):
     article = comment.article
 
     if profile != comment.user_profile:
-        messages.error(request, 'Sorry, you do not have permissions to delete this comment.')
+        messages.error(request,
+                       'Sorry, '
+                       'you do not have permissions to delete this comment.')
         return redirect(reverse('article_detail', args=[article.id]))
 
     comment.delete()

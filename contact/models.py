@@ -20,7 +20,7 @@ class PrivateCoachingContact(models.Model):
     full_name = models.CharField(max_length=80, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    level = models.ForeignKey(Level, on_delete=models.SET_NULL, 
+    level = models.ForeignKey(Level, on_delete=models.SET_NULL,
                               blank=True, null=True)
     venue = models.ForeignKey(Venue, on_delete=models.SET_NULL,
                               blank=True, null=True)

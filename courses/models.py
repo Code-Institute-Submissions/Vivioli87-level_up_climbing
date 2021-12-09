@@ -51,10 +51,13 @@ class Course(models.Model):
     course_type = models.ForeignKey('CourseType', null=True, blank=True,
                                     on_delete=models.SET_NULL)
     start_date = models.DateTimeField(auto_now_add=False)
-    venue = models.ForeignKey(Venue, null=True, blank=True, on_delete=models.SET_NULL)
+    venue = models.ForeignKey(Venue, null=True,
+                              blank=True, on_delete=models.SET_NULL)
     lesson_number = models.IntegerField(null=False, blank=False, default=1)
-    coach = models.ForeignKey(Coach, null=True, blank=True, on_delete=models.SET_NULL)
-    course_complete = models.BooleanField(null=False, blank=False, default=False)
+    coach = models.ForeignKey(Coach, null=True,
+                              blank=True, on_delete=models.SET_NULL)
+    course_complete = models.BooleanField(null=False,
+                                          blank=False, default=False)
 
     def __str__(self):
         return self.name

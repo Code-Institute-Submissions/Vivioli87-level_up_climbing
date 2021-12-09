@@ -38,8 +38,9 @@ def booking(request, course_id):
         if booking_form.is_valid():
             booking_submission = booking_form.save()
 
-            return redirect(reverse('booking_success',
-                                    args=[booking_submission.booking_reference]))
+            return redirect(reverse
+                            ('booking_success',
+                             args=[booking_submission.booking_reference]))
         else:
             messages.error(request, 'There was an error on the booking form')
 
