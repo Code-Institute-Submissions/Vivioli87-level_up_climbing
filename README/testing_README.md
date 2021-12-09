@@ -174,5 +174,11 @@ These issues have all been corrected.
 
 - The performance issues as mentioned in the above section.
 
+- I had added 'async' to the stripe javascript link to improve performance scores on lighthouse however this caused intermittent issues with the card field loading on the checkout page and therefore a user was able to book a class without putting any payment information in. I have since removed async to avoid this issue and ensure the card field (and its validation) loads properly every time. I checked that my logic for the initial issue was correct with tutor support and this could be the only reason for this occurring
+
+-There were some html validation issues from using the |linebreaks in a template tag. I have fixed this by changing the enclosing element tag from a paragraph to a div. Now the linebreaks show inside the div and not outside the previously used p tag.
+
+- One issue from html validation that I am unable to fix is regarding the syntac on my map image elements. I have not amended this as this syntax was taken from Google maps (static) how to guides.
+
 
 [Back to table of contents](#table-of-contents)
