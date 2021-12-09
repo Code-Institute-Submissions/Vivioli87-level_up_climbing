@@ -327,6 +327,8 @@ To deploy the app to Heroku from its [GitHub repository](https://github.com/Vivi
 - Django documnentation for many things such as how to override the 404 page, help on models, forms, template tags.
     [django docs](https://docs.djangoproject.com/en/3.2/)
 
+- Resource for sending emails with django (used as well as django docs) [django send mail](https://simpleisbetterthancomplex.com/tutorial/2016/06/13/how-to-send-email.html)
+
 - Tutor support - Johann who helped me figure out how to autofill the datetime input with existing values.
 
 - Boutique Ado walk through project from code institue.
